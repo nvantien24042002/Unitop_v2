@@ -1,0 +1,58 @@
+################################
+# OS / System
+################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+################################
+# Editor / IDE
+################################
+.vscode/
+.idea/
+
+################################
+# Logs
+################################
+*.log
+
+################################
+# Executable / Archive (NEVER COMMIT)
+################################
+*.exe
+*.msi
+*.zip
+*.rar
+*.7z
+
+################################
+# Temporary / Backup
+################################
+*.bak
+*.tmp
+*.swp
+*.old
+
+################################
+# Build output
+################################
+dist/
+build/
+.cache/
+tmp/
+
+################################
+# Node (nếu có)
+################################
+node_modules/
+# Media
+*.mp4
+*.mov
+*.avi
+
+# FontAwesome source
+fontawesome/svgs/
+fontawesome/scss/
+fontawesome/metadata/
+fontawesome/sprites/
+fontawesome/*-full/

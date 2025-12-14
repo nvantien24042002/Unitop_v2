@@ -1,0 +1,50 @@
+/* Thiết lập chung cho body */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+/* Thiết lập khung chứa chính */
+#wrapper {
+  width: 969px;
+  margin: 0 auto;
+}
+
+/* Định dạng cho tiêu đề chính */
+h1 {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Định dạng chung cho tất cả h3 (đã gộp font-size và font-weight) */
+h3 {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+/* Định dạng riêng cho heading 2 */
+h3.heading2 {
+  text-transform: uppercase;
+}
+
+/* Định dạng đoạn văn đầu tiên */
+p.paragrap1 {
+  font-weight: bold;
+}
+
+/* Căn đều hai bên cho đoạn văn */
+p.text-justify {
+  text-align: justify;
+}
+
+/* Gạch ngang chữ (strikethrough) */
+span.mute {
+  text-decoration: line-through;
+}
+
+/* Định dạng phần thông tin cuối (about) */
+p.about {
+  text-align: right;
+  font-weight: bold;
+  color: orange;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiển thị danh sách sản phẩm - Flex</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      #wrapper {
+        width: 960px;
+        margin: 0 auto;
+      }
+      ul.list-product {
+        list-style: none;
+        display: flex;
+        text-align: center;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        justify-content: space-between;
+      }
+      ul.list-product li {
+        flex-basis: 33.33%;
+        /* padding: 50px 0px; */
+        /* border: 1px solid #706464; */
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 10px;
+      }
+      ul.list-product li .product-item {
+        border: 2px dashed #ceadadf5;
+      }
+      ul.list-product li:hover .product-item {
+        border: 1px solid tomato;
+      }
+    </style>
+    <div id="wrapper">
+      <h1>Hiển thị danh sách sản phẩm , bài viết theo hàng ngang</h1>
+      <ul class="list-product">
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <!-- <div class="product-top"></div> -->
+            <!-- <div class="product-infor"></div> -->
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illo
+            totam enim suscipit ipsum eum laudantium sed perferendis
+            consectetur, esse minima! Dolor, distinctio dolorum porro pariatur
+            voluptatibus explicabo facere quidem!
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

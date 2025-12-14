@@ -1,0 +1,186 @@
+/* ===============================
+   GENERAL
+================================*/
+body {
+    background: #f5f5f5;
+    font-family: Arial;
+    padding: 20px;
+  }
+  
+  .section { margin-bottom: 60px; }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* ===============================
+     MODULE 7 – VIDEO SLIDER
+  ================================*/
+  .banner-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .banner-img,
+  .banner-video {
+    height: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Progress bar */
+  .progress-bar-wrap {
+    width: 100%;
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #ee4d2d;
+    transition: width linear;
+  }
+  
+  /* Nút Shopee */
+  .nav-btn-3 {
+    width: 46px;
+    height: 46px;
+    background: rgba(255,255,255,0.85);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #333;
+    font-size: 20px;
+    z-index: 10;
+    transition: .25s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .prev-btn-3 { left: 10px; }
+  .next-btn-3 { right: 10px; }
+  
+  /* Hover */
+  .nav-btn-3:hover {
+    transform: translateY(-50%) scale(1.12);
+    background: #fff;
+  }
+  
+  /* ===============================
+     MODULE 5 – INFINITE BRAND SLIDER
+  ================================*/
+  .brand-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 22px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* ===============================
+     MODULE 1 – Hover Zoom
+  ================================*/
+  .product {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: .25s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  
+  .product img {
+    width: 100%;
+    border-radius: 10px;
+    transition: .25s;
+  }
+  
+  .product:hover img {
+    transform: scale(1.08);
+  }
+  
+  .product:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  }
+  
+  /* ===============================
+     MODULE 2 – Badge
+  ================================*/
+  .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 10;
+  }
+  
+  .badge-sale { background: #ee4d2d; }
+  .badge-flash { background: #ffa41c; }
+  .badge-mall { background: #d0011b; }
+  
+  /* ===============================
+     MODULE 6 – Add to Cart
+  ================================*/
+  .actions {
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0;
+    transition: .25s;
+  }
+  
+  .product:hover .actions { opacity: 1; }
+  
+  .btn {
+    background: #ee4d2d;
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .wishlist { background: #ffa41c; }
+  
+  /* ===============================
+     MODULE 3 – Lazy Loading
+  ================================*/
+  .owl-lazy {
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  
+  .owl-lazy.loaded {
+    opacity: 1;
+  }
+  
