@@ -17,7 +17,4 @@ $list_user = array(
         'mail' =>'DuthiA@gmail.con',
     ),
 )
-$list_product = array(
-    
-)
 ?>
