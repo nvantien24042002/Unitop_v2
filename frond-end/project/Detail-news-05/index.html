@@ -3,18 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/reset.css" >
+    <link rel="stylesheet" href="assets/css/global.css" >
     <title>Build Project Detail-news 05</title>
 </head>
 <body>
     <div id="wrapper">
         <header id="header">
+            <div class="container">
+                <div class="logo-head">
+                    <a href="">
+                        <img src="assets/img/logo-header.png" alt="">
+                    </a>
+                </div>
+                <!-- end logo-head -->
+                 <nav>
+                    <ul class="menu-head">
+                        <li><a href="">Trang Chủ</a></li>
+                        <li><a href="">Về Chúng tôi</a></li>
+                        <li>
+                            <a href="">Sản Phẩm
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </a>
+                        </li>
+                        <li><a href="">Xu Hướng</a></li>
+                        <li><a href="">Thanh Toán</a></li>
+                        <li><a href="">Liên Hệ</a></li>
+                    </ul>
+                 </nav>
+                    <!-- end menu-head -->
+                     <div class="head-action">
+                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                         <div class="cart">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span class="num">0</span>
+                         </div>
+                     </div>
 
+            </div>
         </header>
         <!-- === END HEADER === -->
          <main id="main-content">
-            <nav class="breadcrumbs">
-
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs-list">
+                <li class="breadcrumbs-item">
+                <a href="/" class="breadcrumbs-link">
+                    <i class="fa-solid fa-house-chimney"></i>
+                    Trang chủ
+                </a>
+                </li>
+                <li class="breadcrumbs-item" aria-current="page">
+                Xu hướng
+                </li>
+            </ol>
             </nav>
+
             <!-- end breadcrums -->
              <div class="content-wrap">
                  <article id="content">
