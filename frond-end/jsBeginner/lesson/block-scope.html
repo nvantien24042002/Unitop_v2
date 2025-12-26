@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block scope</title>
+  </head>
+  <body>
+    <h1>Block scope</h1>
+    <script>
+      let x = 20;
+      {
+        let x = 10;
+        // console.log(x);
+        // for (let i = 0; i <= 4; i++) {
+        //   console.log(i);
+        // }
+        // console.log(i);
+      }
+      console.log(x);
+    </script>
+  </body>
+</html>
