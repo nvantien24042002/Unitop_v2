@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lọc phần tử mảng với filter()</title>
+  </head>
+  <body>
+    <h1>Lọc phần tử mảng với filter()</h1>
+
+    <script>
+      let list_number = [10, 20, 30, 1, 2, 3, 4, 5, 6, 3, 1];
+      let result;
+      //   result = list_number.filter(function (currentValue) {
+      //     return currentValue % 2 == 0;
+      //   });
+      console.log(result);
+      /* --- Đánh số thứ tự cho phần tử --- */
+      let list_number_1 = [10, 20, 30, 1, 2, 3, 4, 5, 6, 3, 1];
+      result = list_number_1.filter(function (currentValue, index) {
+        return index + " : " + currentValue;
+      });
+      console.log(result);
+      /* --- Phần tử ở vị trí chẵn thì nhân đôi --- */
+      let list_number_2 = [10, 20, 30, 1, 2, 3, 4, 5, 6, 3, 1];
+      result1 = list_number_2.filter(function (currentValue, index) {
+        if (index % 2 == 0) {
+          return currentValue * 2;
+        }
+      });
+      console.log(result1);
+      //   return currentValue;   /* Lỗi*/
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Làm việc với thuộc tính trong object</title>
+  </head>
+  <body>
+    <script>
+      let person = {
+        firstName: "Nguyễn ",
+        lastName: "Tiến",
+        gender: "male",
+        age: 23,
+      };
+      //   console.log(person);
+      //  === Truy xuất vào thuộc tính của object
+      let res = person.firstName;
+      //   console.log(res);
+      // ===Truy xuất vào thuộc tính thông qua vòng lặp
+      for (x in person) {
+        console.log(x + " : " + person[x]);
+      }
+      // === Cập nhật giá trị thuộc tính của object
+      person["age"] = 21;
+      console.log(person);
+      //   === Tạo thuộc tính mới cho object
+      person.weight = 65;
+      console.log(person);
+      //    === Xoá thuộc tính trên object
+      delete person.weight;
+    </script>
+  </body>
+</html>

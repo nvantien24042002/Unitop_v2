@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm phần tử vào mảng</title>
+  </head>
+  <body>
+    <script>
+      let list_user = ["Cương", "Phong", "Tuấn"];
+      list_user.push("Tiến");
+      console.log(list_user);
+      //   Tạo một mảng và thêm tất cả các số chẵn vào mảng con
+      let list_number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      let list_even = [];
+      for (let value of list_number) {
+        if (value % 2 == 0) {
+          list_even.push(value);
+        }
+      }
+      console.log(list_even);
+    </script>
+  </body>
+</html>
