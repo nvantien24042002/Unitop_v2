@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next, Prev Sibling Element</title>
+  </head>
+  <body>
+    <style>
+      .active {
+        background: red;
+        color: white;
+      }
+
+      .near {
+        background: orange;
+      }
+    </style>
+    <h1>Next, Prev Sibling Element</h1>
+    <ul id="main_menu">
+      <!-- <li>Item 1</li>
+      <li>Item 2</li>
+      <li class="current">Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li> -->
+      <li>item1</li>
+      <li>item2</li>
+      <li>item3</li>
+      <li>item4</li>
+      <li>item5</li>
+    </ul>
+    <script>
+      // const current = document.querySelector(".current");
+      // console.log(current.previousElementSibling.innerHTML);
+      //   current.previousElementSibling.style.background = "yellow";
+      //   current.nextElementSibling.style.background = "orange";
+      // console.log(current.nextElementSibling.innerHTML);
+      // current.addEventListener("click", function (e) {
+      //   e.preventDefault();
+      //   current.previousElementSibling.classList.toggle("active");
+      //   current.nextElementSibling.classList.toggle("active");
+      // });
+      /*
+      Bài tập 4 :
+      Khi click vào một item bất kỳ :
+      item được click sẽ đổi màu (đóng vai trò item hiện tại)
+      item liền trước item đang click được đổi màu khác
+      item liền sau item đang click được đổi màu khác
+      Mỗi lần click reset trạng thái cũ , chỉ có 1 item hiện tại,và tối đa 2 item lân cận
+      */
+      const items = document.querySelectorAll("#main_menu li");
+      items.forEach(function (li) {
+        li.addEventListener("click", function () {
+          // reset
+          //Vì nếu không remove thì class sẽ bị cộng dồn
+          items.forEach((item) => item.classList.remove("active", "near"));
+
+          // item hiện tại
+          this.classList.add("active");
+
+          // item trước
+          if (this.previousElementSibling) {
+            this.previousElementSibling.classList.add("near");
+          }
+
+          // item sau
+          if (this.nextElementSibling) {
+            this.nextElementSibling.classList.add("near");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

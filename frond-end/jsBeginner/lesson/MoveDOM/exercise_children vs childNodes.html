@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập phân biệt children vs childNodes</title>
+  </head>
+  <body>
+    <ul id="main_menu">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+    <script>
+      const main_menu = document.querySelector("#main_menu");
+      console.log(main_menu.children.length);
+      console.log(main_menu.childNodes.length);
+      // console.log(main_menu.children.nodeName);
+      // console.log(main_menu.childNodes.nodeName);
+      main_menu.firstElementChild.style.background = "yellow";
+      main_menu.lastElementChild.style.background = "pink";
+    </script>
+  </body>
+</html>

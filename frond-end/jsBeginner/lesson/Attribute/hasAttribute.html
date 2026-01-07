@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hasAttribute in javascript</title>
+  </head>
+  <body>
+    <a href="" title="The course javascript" reviews="124 lượt">Js Beginner</a>
+    <div id="result"></div>
+    <script>
+      // hasAttribute
+      const aElement = document.querySelector("a");
+      //   console.log(aElement.hasAttribute("reviews"));
+      if (aElement.hasAttribute("reviews")) {
+        console.log(`Reviews: ${aElement.getAttribute("reviews")}`);
+        document.getElementById("result").innerHTML = `Reviews:
+          ${aElement.getAttribute("reviews")}`;
+      }
+    </script>
+  </body>
+</html>

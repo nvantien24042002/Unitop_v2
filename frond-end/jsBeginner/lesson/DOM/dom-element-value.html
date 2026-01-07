@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thay đổi giá trị thuộc tính của một Element</title>
+  </head>
+  <body>
+    <img
+      id="demo"
+      class="text"
+      src="https://content.pexels.com/images/canva/ai-generated-ad/off-theme/sunset_city_skyline_glow-full.jpg"
+      alt=""
+      title="some time"
+    />
+
+    <script>
+      //Lấy thông tin và cập nhật một thuộc tính trên element
+      const demo = document.getElementById("demo");
+      console.log(demo);
+      console.log(demo.src);
+      demo.title = "New img";
+    </script>
+  </body>
+</html>

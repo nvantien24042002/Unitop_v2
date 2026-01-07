@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm nhiều phần tử vào phân tử cho trước</title>
+  </head>
+  <body>
+    <ul id="menu">
+      <li>Home Page</li>
+      <li>News</li>
+    </ul>
+    <script>
+      const menu = document.getElementById("menu");
+      const li1 = document.createElement("li");
+      li1.textContent = "Products";
+      const li2 = document.createElement("li");
+      li2.textContent = "Course";
+      const li3 = document.createElement("li");
+      li3.textContent = "Contact";
+      const li4 = document.createElement("li");
+      li4.textContent = "About";
+      menu.append(li1, li2, li3, li4);
+    </script>
+  </body>
+</html>

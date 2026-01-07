@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phương thức trong object</title>
+  </head>
+  <body>
+    <h1>Phương thức trong object</h1>
+    <script>
+      // 1 Định nghĩa phương thức trong object
+      // 2 Toán tử this trong Object
+      // 3 Thêm một phương thức vào Object
+      let number = {
+        a: 12,
+        b: 13,
+        sum: function () {
+          return this.a + this.b;
+        },
+      };
+      number.minus = function () {
+        return this.a - this.b;
+      };
+      document.write(number.sum() + "<br>");
+      document.write(number.minus());
+    </script>
+    <h3>Bài tập 1</h3>
+    <script>
+      let user = {
+        name: "Tiến",
+        sayName() {
+          console.log(this.name);
+        },
+      };
+      user.sayName();
+    </script>
+    <h3>Bài tập 2</h3>
+    <script>
+      function sayAge() {
+        console.log(this.age);
+      }
+
+      let user1 = {
+        age: 23,
+        sayAge,
+      };
+
+      let user2 = {
+        age: 20,
+        sayAge,
+      };
+
+      user1.sayAge();
+      user2.sayAge();
+      /*
+      Bài tập 2
+      Dòng đầu tiên in ra 23 
+      Dòng thứ hai in ra 20
+      Vì cùng 1 function nhưng hai object khác nhau
+      */
+    </script>
+    <h3>Bẫy</h3>
+    <script>
+      let obj = {
+        name: "Tiến",
+        show() {
+          console.log(this.name);
+        },
+      };
+
+      obj.show();
+    </script>
+  </body>
+</html>

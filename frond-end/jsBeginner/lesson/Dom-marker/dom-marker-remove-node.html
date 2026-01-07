@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Delete element in javascript</h1>
+    <ul id="langs">
+      <li>Html</li>
+      <li class="current">Css</li>
+      <li>javascript</li>
+    </ul>
+    <script>
+      const langs = document.querySelector("#langs");
+      const curr = document.querySelector(".current");
+      //   langs.remove();  // Xoá toàn bộ node
+      langs.removeChild(curr); //Xoá node được chỉ định
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiểu set và get trong javascript</title>
+  </head>
+  <body>
+    <script>
+      /*let person = {
+        firstName: "Nguyễn",
+        lastName: " Tiến",
+
+        get fullname() {
+          return this.firstName + this.lastName;
+        },
+        set fullname(info) {
+          info = info.split(" ");
+          this.firstName = info[0];
+          this.lastName = " " + info[info.length - 1];
+          console.log(info);
+        },
+      };
+      person.fullname = "Trần Văn Tiến";
+      document.write(person.fullname);*/
+    </script>
+    <!-- BÀi tập  -->
+    <script>
+      // Bài tập 1
+      /*let product = {
+        name: "Bánh mì",
+        price: 15000,
+
+        get info() {
+          return this.name + " - " + this.price + "đ";
+        },
+      };
+      document.write(product.info);*/
+      //   Bài tập 2
+      /*let user = {
+        firstName: "Nguyễn",
+        lastName: "Tiến",
+
+        get fullName() {
+          return this.firstName + " " + this.lastName;
+        },
+
+        set fullName(value) {
+          let arr = value.split(" ");
+          this.firstName = arr[0];
+          this.lastName = arr[arr.length - 1];
+        },
+      };
+
+      user.fullName = "Trần Văn Nam";
+      console.log(user.fullName);*/
+      // Bài tập 3
+      let person = {
+        _age: 18,
+
+        get age() {
+          return this._age;
+        },
+
+        set age(value) {
+          if (value < 0) {
+            console.log("Tuổi không hợp lệ");
+            return;
+          }
+          this._age = value;
+        },
+      };
+
+      person.age = -5;
+      person.age = 25;
+      console.log(person.age);
+      //   Bài tập 4
+      let obj = {
+        a: 10,
+
+        get x() {
+          return this.a;
+        },
+
+        set x(value) {
+          this.a = value * 2;
+        },
+      };
+
+      obj.x = 5; // Hàm Set gọi
+      console.log(obj.x); // Đọc giá trị Hàm get gọi
+    </script>
+  </body>
+</html>

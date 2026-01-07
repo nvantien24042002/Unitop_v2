@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event submit form</title>
+  </head>
+  <body>
+    <form action="" id="register">
+      <fieldset>
+        <legend>Register form</legend>
+        <label for="username">Username</label>
+        <br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="off"
+        /><br />
+        <label for="password">Password</label>
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          autocomplete="off"
+        /><br />
+        <br />
+        <label for="city">City</label>
+        <br />
+        <select name="" id="city">
+          <option value="">--Choose--</option>
+          <option value="1">Ha Noi</option>
+          <option value="2">Hue</option>
+          <option value="3">Đa Nang</option>
+          <option value="4">Ho Chi Minh city</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Login Now" />
+      </fieldset>
+    </form>
+    <script>
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+      const city = document.getElementById("city");
+      const registerForm = document.forms.register;
+      registerForm.addEventListener("submit", function (e) {
+        alert(username.value);
+        e.preventDefault();
+      });
+      console.log(registerForm);
+    </script>
+  </body>
+</html>
