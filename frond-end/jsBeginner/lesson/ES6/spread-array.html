@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speard operator for array</title>
+  </head>
+  <body>
+    <h1>Speard operator for array</h1>
+    <script>
+      //speard operator
+      //   1.embed element
+      let first_array = [4, 5, 10];
+      let second_array = [1, 3, ...first_array, 34, 56];
+      //   console.log(second_array);
+      document.write(second_array);
+      //   2.copy array
+      // Mảng new_array độc lập với mảng first_array
+      //   let new_array = [...first_array];
+      //   console.log(new_array);
+      //   3.contact array
+      let new_array = [...first_array, ...second_array];
+      console.log(new_array);
+    </script>
+  </body>
+</html>

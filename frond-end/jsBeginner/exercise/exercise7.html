@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hover replace ing</title>
+  </head>
+  <body>
+    <style>
+      ul.products {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        justify-content: space-between;
+        max-width: 500px;
+      }
+      .product-item {
+        width: 300px;
+        height: 50%;
+      }
+    </style>
+    <h1>Hover replace img</h1>
+    <ul class="products">
+      <li class="product-item">
+        <img
+          src="../lesson/img/img/images1.jpeg"
+          style="width: 200px; height: 200px"
+          alt=""
+          data-hover="../lesson/img/img/images3.jpeg"
+          data-imgOrigin="../lesson/img/img/images1.jpeg"
+        />
+      </li>
+      <li class="product-item">
+        <img
+          src="../lesson/img/img/images2.jpeg"
+          style="width: 200px; height: 200px"
+          alt=""
+          data-hover="../lesson/img/img/images4.jpeg"
+          data-imgOrigin="../lesson/img/img/images2.jpeg"
+        />
+      </li>
+    </ul>
+  </body>
+  <script>
+    const productElements = document.querySelectorAll(".product-item");
+
+    productElements.forEach(function (item) {
+      const img = item.querySelector("img");
+
+      item.addEventListener("mouseover", function () {
+        img.src = img.dataset.hover;
+      });
+
+      item.addEventListener("mouseout", function () {
+        img.src = img.dataset.imgorigin;
+      });
+    });
+  </script>
+</html>

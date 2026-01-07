@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transform data Map()</title>
+  </head>
+  <body>
+    <h1>Array map js</h1>
+    <ul></ul>
+    <script>
+      let myArr = [1, 2, 3, 4, 5];
+      let newArr = myArr.map((element) => {
+        return `${element} * 3 = ${element * 3}`;
+      });
+      console.log(newArr);
+      //   Bài tập 2
+      //   const numbers = [1, 2, 3, 4];
+      const numbers = [2, 4, 6, 8];
+      const result = numbers.map((n) => n * n);
+
+      console.log(result);
+      //   Bài tập 3
+      const course = ["HTML", "CSS", "JS"];
+      const ulElement = document.querySelector("ul");
+      const listHTML = course.map((lang) => `<li>${lang}</li>`);
+      ulElement.innerHTML = listHTML.join("");
+    </script>
+  </body>
+</html>

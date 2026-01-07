@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>preventDefault() in Javascript</title>
+  </head>
+  <body>
+    <h1>preventDefault() in Javascript</h1>
+    <a href="">Click vào tôi</a>
+    <script>
+      const aElement = document.querySelector("a");
+      aElement.addEventListener("click", function (e) {
+        console.log(aElement.innerText);
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>

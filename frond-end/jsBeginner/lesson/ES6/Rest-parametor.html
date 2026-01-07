@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rest Parametors</title>
+  </head>
+  <body>
+    <script>
+      // Dùng để thu nhận các đối số còn lại của một mảng
+      // Sử dụng cú pháp
+      let sum = (...args) => {
+        let s = 0;
+        for (let n of args) {
+          s += n;
+        }
+        return s;
+      };
+      console.log(sum(10, 23, 20));
+
+      // Ví dụ 1:
+    </script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Map render</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .product-item {
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+
+      .product-thumb img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+
+      .product-name {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        text-decoration: none;
+        margin: 10px 0;
+        font-size: 18px;
+      }
+      span {
+        display: block;
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      span:last-child {
+        color: #e74c3c;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    </style>
+    <ul class="product"></ul>
+
+    <script>
+      // 1. Tạo mảng lưu danh sách sản phẩm
+      const products = [
+        {
+          id: 1,
+          name: "Iphone 14 Pro Max",
+          ram: "6 GB",
+          discount: 10,
+          price: 33990000,
+          image:
+            "https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-tim-thumb-600x600.jpg",
+        },
+        {
+          id: 2,
+          name: "Samsung Galaxy S23 Ultra",
+          ram: "8 GB",
+          discount: 12,
+          price: 26990000,
+          image:
+            "https://sp.yimg.com/ib/th?id=OPHS.zG2lSXSLhxrXFA474C474&o=5&pid=21.1", // Ví dụ minh họa
+        },
+        {
+          id: 3,
+          name: "Oppo Find X5 Pro",
+          ram: "12 GB",
+          discount: 13,
+          price: 18500000,
+          image:
+            "https://sp.yimg.com/ib/th?id=OPHS.s0jFmRZlBQG0%2bw474C474&o=5&pid=21.1",
+        },
+      ];
+      // 2. Chọn thẻ cha (ul)
+      const productList = document.querySelector(".product");
+      // 3. Sử dụng map để render
+      const htmlContent = products
+        .map((product) => {
+          //Tính giá trị discount
+          const priceDiscount = product.price * (1 - product.discount / 100);
+          return `
+        <li>
+            <div class="product-item">
+                <a href="#" class="product-thumb">
+                    <img src="${product.image}" alt="${product.name}" />
+                </a>
+                <a class="product-name" href="#">${product.name}</a>
+                <span>RAM: ${product.ram}</span>
+                <span style="text-decoration: line-through; opacity: 0.6;">Giá cũ: ${product.price.toLocaleString(
+                  "vi-VN"
+                )}đ</span>
+                <span>Giá mới: ${priceDiscount.toLocaleString("vi-VN")}đ</span>
+                <span>Giảm giá: ${product.discount}%</span>
+            </div>
+        </li>
+    `;
+        })
+        .join(""); // Dùng join để biến mảng các chuỗi thành 1 chuỗi lớn duy nhất
+      //  4, Đưa nội dung vào html
+      productList.innerHTML = htmlContent;
+    </script>
+  </body>
+</html>

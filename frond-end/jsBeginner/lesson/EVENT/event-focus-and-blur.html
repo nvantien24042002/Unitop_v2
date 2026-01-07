@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event focus and blur</title>
+  </head>
+  <body>
+    <form action="">
+      <fieldset>
+        <legend>Register form</legend>
+        <label for="username">Username</label>
+        <br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="off"
+        /><br />
+        <label for="password">Password</label>
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          autocomplete="off"
+        /><br />
+        <br />
+        <label for="city">City</label>
+        <br />
+        <select name="" id="city">
+          <option value="">--Choose--</option>
+          <option value="1">Ha Noi</option>
+          <option value="2">Hue</option>
+          <option value="3">Đa Nang</option>
+          <option value="4">Ho Chi Minh city</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Login Now" />
+      </fieldset>
+    </form>
+    <script>
+      const username = document.querySelector("#username");
+      const password = document.querySelector("#password");
+      const city = document.querySelector("#city");
+      /*
+      //     username.addEventListener("blur", function () {
+      //       username.style.background = "none";
+      //       console.log(username.value);
+      //     });
+      //   even in element password
+      //     password.addEventListener("blur", function () {
+      //       console.log(password.value);
+      //     });
+      //     Event in element city
+      city.addEventListener("focus", function () {
+        city.style.backgroundColor = "lightyellow";
+      });
+      city.addEventListener("blur", function () {
+        city.style.backgroundColor = "white";
+      });
+      //   Exercise 1
+      username.addEventListener("blur", function () {
+        if (this.value === "") {
+          this.style.border = "1px solid red";
+        } else {
+          this.style.border = "1px solid #ccc";
+          console.log(this.value);
+        }
+      });
+      password.addEventListener("blur", function () {
+        if (this.value === "") {
+          this.style.border = "1px solid red";
+        } else {
+          this.style.border = "1px solid #ccc";
+          console.log(this.value);
+        }
+      });
+      city.addEventListener("blur", function () {
+        if (this.value === "") {
+          this.style.border = "1px solid red";
+        } else {
+          this.style.border = "1px solid #ccc";
+        }
+      });
+      */
+      /* Exercise advance */
+      // Ex1
+      function validation() {
+        if (this.value.trim() === "") {
+          this.style.border = "2px solid red";
+        } else {
+          this.style.border = "2px solid green";
+          console.log(this.value);
+        }
+      }
+      document.querySelectorAll("input").forEach(function (input) {
+        input.addEventListener("blur", validation);
+      });
+    </script>
+  </body>
+</html>

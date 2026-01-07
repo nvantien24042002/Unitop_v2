@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập 6 : Hiển thị thông tin form đăng ký</title>
+  </head>
+  <body>
+    <form action="" id="registers">
+      <fieldset>
+        <legend>Register form</legend>
+        <label for="fullname">Fullname</label>
+        <br />
+        <input
+          type="text"
+          name="fullname"
+          id="fullname"
+          autocomplete="off"
+        /><br />
+        <label for="username">Username</label>
+        <br />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          autocomplete="off"
+        /><br />
+        <label for="password">Password</label>
+        <br />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          autocomplete="off"
+        /><br />
+        <br />
+        <label for="city">City</label>
+        <br />
+        <select name="city_id" id="city_id">
+          <option value="">--Choose--</option>
+          <option value="1">Ha Noi</option>
+          <option value="2">Hue</option>
+          <option value="3">Đa Nang</option>
+          <option value="4">Ho Chi Minh city</option>
+        </select>
+        <br /><br />
+        <input type="submit" value="Register Now" />
+      </fieldset>
+    </form>
+    <div id="result"></div>
+    <script>
+      const registerForm = document.forms.registers;
+      const result = document.getElementById("result");
+
+      function show_city(city_id) {
+        const city_name = {
+          1: "Hà Nội",
+          2: "Huế",
+          3: "Đà Nẵng",
+          4: "Hồ Chí Minh",
+        };
+        return city_name[city_id] || "Chưa chọn";
+      }
+
+      registerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const fullname = document.getElementById("fullname").value;
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const city_id = document.getElementById("city_id").value;
+
+        result.innerHTML = `
+      Fullname: <b>${fullname}</b><br>
+      Username: <b>${username}</b><br>
+      Password: <b>${"*".repeat(password.length)}</b><br>
+      Thành phố: <b>${show_city(city_id)}</b>
+    `;
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nhân bản element trên DOM</title>
+  </head>
+  <body>
+    <!-- <ul id="langs">
+      <li class="item">Html</li>
+    </ul> -->
+    <ul id="menu">
+      <li><a href="">Trang chủ</a></li>
+      <li><a href="">Giới thiệu</a></li>
+      <li class="current">
+        <a href="">Khoá học</a>
+        <ul class="sub_menu">
+          <li><a href="">Html css 21 ngày</a></li>
+          <li><a href="">Php master</a></li>
+        </ul>
+      </li>
+    </ul>
+    <script>
+      const menu = document.querySelector("#menu");
+      const current = document.querySelector(".current");
+
+      //  Clone node
+      const clone = current.cloneNode(true);
+
+      clone.querySelector("a").textContent = "Khoá học nâng cao";
+
+      const subItems = clone.querySelectorAll(".sub_menu li a");
+      subItems[0].textContent = "JavaScript nâng cao";
+      subItems[1].textContent = "Laravel nâng cao";
+
+      subItems.forEach((item) => {
+        const span = document.createElement("span");
+        span.textContent = " mới";
+        span.style.color = "red";
+        item.appendChild(span);
+      });
+
+      //  Append bản clone vào menu
+      menu.appendChild(clone);
+    </script>
+  </body>
+</html>

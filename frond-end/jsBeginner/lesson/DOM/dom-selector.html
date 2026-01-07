@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Get element By Selector</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores
+      mollitia repudiandae rerum nam, aperiam repellendus velit alias id quos
+      error? Dolorem excepturi dicta deleniti quod molestiae distinctio
+      voluptate saepe qui.
+    </p>
+    <h2>Heading 2.1</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam aperiam
+      placeat veniam sint iusto omnis nobis aspernatur quasi nostrum minima.
+    </p>
+    <ul>
+      <li><a href="">Html Css</a></li>
+      <li><a href="" class="hightlight">Javascript</a></li>
+      <li><a href="">Php</a></li>
+      <li><a href="" class="hightlight">Bootstrap A-z</a></li>
+    </ul>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. At veritatis quas
+      voluptatem explicabo animi adipisci? Ipsum optio molestiae consequatur
+      quis numquam, architecto quisquam. Quos nisi, assumenda distinctio
+      delectus unde vero.
+    </p>
+    <h2>Heading 2.2</h2>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero fugit
+      officia consectetur dignissimos voluptatem dolor sed ipsum, magni nihil
+      explicabo deleniti at recusandae dolores ab? Pariatur dolorum rerum cumque
+      a.
+    </p>
+    <h2>Heading 2.3</h2>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero fugit
+      officia consectetur dignissimos voluptatem dolor sed ipsum, magni nihil
+      explicabo deleniti at recusandae dolores ab? Pariatur dolorum rerum cumque
+      a.
+    </p>
+  </body>
+  <script>
+    //querySelector
+    const pElement = document.querySelector("p");
+    pElement.style.color = "red";
+    // querySelectorAll
+    const pElement1 = document.querySelectorAll("p");
+    console.log(pElement1);
+    for (let ele of pElement1) {
+      ele.style.color = "brown";
+    }
+    // pElement.style.color = "red";
+    // document.querySelector("ul li a").style.background = "yellow"; // Thẻ a đầu tiên của li được active
+    // let a_elementAll = document.querySelectorAll("ul li a");
+    // for (let e2 of a_elementAll) {
+    //   e2.style.color = "red";
+    // }
+    let a_elementAll = document.querySelectorAll(".hightlight");
+    console.log(a_elementAll);
+    for (let e2 of a_elementAll) {
+      e2.style.background = "red";
+    }
+  </script>
+</html>
