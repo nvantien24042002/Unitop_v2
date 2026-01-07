@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function trong js</title>
+  </head>
+  <body>
+    <h1>Làm việc với hàm</h1>
+    <!-- <script src="define-function.js"></script> -->
+    <h2>Tham số của hàm</h2>
+    <script>
+      function sayHello(fullname = "Nguyễn Văn Tiến") {
+        document.write("Xin chào " + fullname);
+      }
+      sayHello();
+      document.write("<br>");
+      function sum(a, b) {
+        return a + b;
+      }
+      document.write(2, 3);
+    </script>
+    <h3>Tham số hàm mặc định</h3>
+    <h3>Tham số hàm là mảng</h3>
+    <script>
+      function sumArray(arr) {
+        let sum = 0;
+        let i = 0;
+
+        while (i < arr.length) {
+          sum += arr[i];
+          i++;
+        }
+
+        return sum;
+      }
+
+      let numbers = [1, 2, 3, 4];
+      console.log(sumArray(numbers));
+    </script>
+    <h3>Tham số hàm là một object</h3>
+    <script>
+      function printPerson(person) {
+        console.log("Tên:", person.name);
+        console.log("Tuổi:", person.age);
+      }
+
+      let p = {
+        name: "Tiến",
+        age: 23,
+      };
+
+      printPerson(p);
+    </script>
+    <h3>Tầm vực biến của hàm</h3>
+    <script>
+      function sum(a, b) {
+        let result;
+        result = a + b;
+        document.write(result);
+      }
+      sum(10, 3);
+      // alert(result); //Lỗi
+    </script>
+    <h3>Trả về với giá trị với lệnh return</h3>
+    <script>
+      function sum(a, b) {
+        let result;
+        result = a + b;
+        // document.write(result);
+        return result;
+      }
+      res = sum(10, 3);
+      alert(res);
+    </script>
+    <h3>Hàm gọi hàm trong js</h3>
+    <script>
+      // Tính tổng các số chẵn từ 1 đến n
+      function checkEven(n) {
+        if (n % 2 == 0) {
+          return true;
+        }
+        return false;
+      }
+      function total_Even(n) {
+        let t = 0;
+        for (let i = 0; i <= n; i++) {
+          if (checkEven(i)) {
+            t += i;
+          }
+        }
+        return t;
+      }
+      document.write(total_Even(6));
+    </script>
+  </body>
+</html>

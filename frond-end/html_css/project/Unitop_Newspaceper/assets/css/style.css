@@ -1,0 +1,476 @@
+/*
+Từ tổng quan đến chi tiết
+Từ ngoài vào trong
+Từ trên xuống dưới
+Từ trái sang phải
+*/
+
+/* CSS Body */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+/* CSS Container */
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+/* -=========== HEADER ==================== */
+#header {
+    background-color: #23282d;
+    padding-top: 27px;
+    padding-bottom: 10px;
+    margin-bottom: 35px;
+}
+/* form search */
+form.header-search {
+    position: relative;
+}
+form.header-search input {
+    background-color: #131619;
+    width: 246px;
+    border: none;
+    outline: none;
+    padding: 9px 0px 9px 15px;
+    
+
+}
+form.header-search input::placeholder {
+    color: #909090;
+}
+.header-search button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    outline: none;
+    padding: 9px 12px;
+    color: #a2a1a1;
+    border: none;
+    background: none;
+  }
+  /* main-menu */
+  nav {
+      margin-top: 5px;
+      flex: 100%;
+      border-right: 10px solid #ff2d2d;
+    }
+    ul {
+      margin-bottom: 0;
+  
+    }
+ul.main-menu li:first-child a {
+    padding-left: 0;
+}
+ul.main-menu li a {
+    color: #eeee;
+    display: block;
+    padding: 6px 20px;
+    text-decoration: none;
+}
+ul.main-menu li a.active {
+    color: #4aa9df;
+}
+ul.main-menu li:hover a {
+    color: #4aa9df;
+}
+/* use compone
+.box .box-head {
+    /* display: inline-block; */
+    /* font-size: 16px; 
+} */
+.box .box-head h3 {
+    display: inline-block;
+    color: #eeeeee;
+    background-color: #23282d; 
+    margin-bottom: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 3px 15px;
+}
+.feature-post .box-body {
+    border-bottom: 1px solid #dadada;
+}
+ul.feature-post-list {
+    padding-left: 0px;
+}
+.feature-post-item .post-thumb {
+    display: block;
+}
+.feature-post-item .post-thumb img {
+    max-width: 100%;
+    height: auto;
+}
+ul.feature-post-list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+ul.feature-post-list .feature-post-item {
+    flex: 0 0 360px;
+}
+ul.feature-post-list li a.post-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #5f5f5f;
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+}
+ul.feature-post-list li .post-thumb {
+    display: block;
+    overflow: hidden;
+}
+ul.feature-post-list li .post-thumb img {
+    
+    transition: all 0.25s;
+} 
+ul.feature-post-list li .post-thumb:hover img {
+    transform: scale(1.05);
+}
+
+
+
+/* === WP-CONTENT ==== */
+/* ------------------- content ---------------- */
+
+#wp-content {
+    margin-top: 21px;
+}
+#content {
+    flex: 0 0 766px;
+    padding-right: 13px;
+}
+#sidebar {
+    flex: 0 0 375px;
+    padding-left: 13px;
+}
+.box-new-post .box-head {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #4aa9df;
+}
+
+.box.box-new-post .box-head h3 {
+    background: #4aa9df;
+}
+ul.post-list .post-item {
+    margin-bottom: 40px;
+    display: flex;
+}
+ul.post-list .post-item .post-thumb {
+    display: block;
+    flex: 0 0 280px;
+    padding-right: 15px;
+}
+ul.post-list .post-item .post-info {
+    display: block;
+    flex: 0 0 472px;
+    padding-left: 15px;
+}
+ul.post-list .post-item .post-info:hover a {
+    color: #4aa9df;
+}
+ul.post-list .post-item .post-info .post-title {
+    font-size: 21px;
+    font-weight: 600;
+    color: #111111;
+    text-decoration: none;
+    display: block;
+}
+ul.post-list .post-item .post-info .post-published {
+    padding: 2px 0px;
+}
+ul.post-list .post-item .post-info .post-published .post-author,
+.post-date {
+    font-size: 11px;
+    font-weight: 600;
+}
+ul.post-list .post-item .post-info .post-published .post-date {
+    color: #aaaaaa;
+}
+ul.post-list .post-item .post-info .post-published .post-author {
+    color: #111111;
+}
+ul.post-list .post-item .post-info .post-excerpt {
+    font-size: 13px;
+    margin-bottom: 0;
+    color: #8d8d8d;
+}
+/* color: #111111; */
+/* -------------- sidebar ------------------ */
+#sidebar a.ads {
+    display: block;
+    margin-bottom: 40px;
+}
+.box.box-topic .box-head {
+    border-bottom: 2px solid #ff2d2d;
+}
+.box.box-topic .box-head h3 {
+    background-color: #ff2d2d;
+}
+.box.box-topic .box-body ul.topic-list .topic-item a{
+    display: block;
+    padding: 6px 0px;
+    text-decoration: none;
+    color: #6b6b6b;
+    position: relative;
+    font-size: 16px;
+}
+.box.box-topic .box-body ul.topic-list .topic-item a .num-post {
+    position: absolute;
+    right: 20px;
+    top: 6px;
+}
+.box.box-topic .box-body ul.topic-list .topic-item:hover a {
+    color: #ff3b3b;
+}
+.box.box-topic .box-body ul.topic-list .topic-item:first-child a {
+    margin-top: 25px;
+}
+/* -------------- footer -------------- */
+/*
+Từ tổng quan đến chi tiết
+Từ ngoài vào trong
+Từ trên xuống dưới
+Từ trái sang phải
+*/
+
+#footer {
+    background: #2e2f30;
+
+    padding-top: 52px;
+    padding-bottom: 80px;
+    color: #f6f6f6;
+}
+#footer .box-logo h3, #footer .box-about_us h3, #footer .box-following h3 {
+    background: none;
+    padding: 0;
+}
+
+#footer .box-logo {
+    flex: 0 0 280px;
+    padding-right: 15px;
+}
+.box-about_us {
+    flex: 0 0 680px;
+    padding-left: 15px;
+    padding-right: 180px; 
+}
+.box-about_us a{
+    color: #479ed0;
+} 
+.box-about_us .box-head {
+    margin-bottom: 40px;
+}
+.box-about_us .box-head h3 {
+    font-size: 18px;
+    color: #f6f6f6;
+    font-weight: 600;
+}
+.box-about_us .box-body p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+#footer .box-following {
+    flex: 0 0 180px;
+    padding-left: 15px;
+}
+.box-following .box-head {
+    margin-bottom: 40px;
+}
+.box-following .box-head h3 {
+    font-size: 18px;
+    color: #f6f6f6;
+    font-weight: 600;
+}
+.box-following .box-body ul.list-social .list-social-item {
+    padding: 5px 7px;
+    background-color: #434648;
+    margin: 0 5px;
+}
+.box-following .box-body ul.list-social .list-social-item:first-child {
+    margin-left: 0;
+}
+.box-following .box-body ul.list-social .list-social-item a {
+    color: #eeeeee;
+}
+.box-following .box-body ul.list-social .list-social-item:hover a {
+    color: #4db2ec;
+}
+#wp-copyright {
+    background: #222527;
+    padding-top: 11px;
+    padding-bottom: 11px;
+}
+.copyright-name {
+    color: #d4d4d4;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.copyright-menu li {
+    margin: 0px 15px;
+}
+.copyright-menu li:last-child {
+    margin-right: 0;
+}
+.copyright-menu li a {
+    color: #dfdfdf;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.copyright-menu li a:hover {
+    color: #4db2ec;
+}
+/* ================= TABLET ================= */
+@media screen and (max-width: 1024px) {
+
+  /* FEATURE POST: 2 cột */
+  ul.feature-post-list {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  ul.feature-post-list .feature-post-item {
+    flex: 0 0 calc(50% - 10px);
+  }
+
+  /* CONTENT + SIDEBAR: xuống hàng */
+  #wp-content .container {
+    flex-wrap: wrap;
+  }
+
+  #content {
+    flex: 0 0 100%;
+    padding-right: 0;
+  }
+
+  #sidebar {
+    flex: 0 0 100%;
+    padding-left: 0;
+    margin-top: 40px;
+  }
+
+  /* Post list */
+  ul.post-list .post-item {
+    flex-wrap: wrap;
+  }
+
+  ul.post-list .post-item .post-thumb,
+  ul.post-list .post-item .post-info {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+
+  ul.post-list .post-item .post-thumb {
+    margin-bottom: 15px;
+  }
+}
+/* ================= MOBILE ================= */
+@media screen and (max-width: 768px) {
+
+  /* HEADER */
+  #header .container {
+    flex-wrap: wrap;
+  }
+
+  .header-logo {
+    margin-bottom: 10px;
+  }
+
+  form.header-search {
+    width: 100%;
+  }
+
+  form.header-search input {
+    width: 100%;
+  }
+
+  /* MENU */
+  ul.main-menu {
+    flex-wrap: wrap;
+  }
+
+  ul.main-menu li {
+    flex: 0 0 50%;
+  }
+
+  ul.main-menu li a {
+    padding: 10px;
+  }
+
+  /* FEATURE POST: 1 cột */
+  ul.feature-post-list .feature-post-item {
+    flex: 0 0 100%;
+  }
+
+  /* Post title nhỏ lại */
+  ul.post-list .post-item .post-info .post-title {
+    font-size: 18px;
+  }
+
+  /* FOOTER */
+  #footer .container {
+    flex-wrap: wrap;
+  }
+
+  #footer .box {
+    flex: 0 0 100%;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .box-about_us {
+    padding-right: 0;
+  }
+}
+/* ===== HAMBURGER MENU ===== */
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #eeeeee;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media screen and (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  ul.main-menu {
+    display: none;
+    flex-direction: column;
+    background: #23282d;
+  }
+
+  ul.main-menu.show {
+    display: flex;
+  }
+
+  ul.main-menu li {
+    width: 100%;
+    border-top: 1px solid #333;
+  }
+
+  ul.main-menu li a {
+    padding: 12px 15px;
+  }
+}
+.menu-toggle.active i::before {
+  content: "\f00d"; /* icon X */
+}

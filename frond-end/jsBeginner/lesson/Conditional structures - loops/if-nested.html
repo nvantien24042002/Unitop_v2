@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>If nested</title>
+  </head>
+  <body>
+    <script>
+      //   let mark;
+      //   mark = -1;
+      //   if (mark >= 0 && mark <= 10) {
+      //     if (mark > 8) {
+      //       document.write("bạn là học sinh xuất sắc");
+      //     }
+      //   } else {
+      //     alert("Điểm số phải lớn hơn 0 và bé hơn 10");
+      //   }
+      //====Giải phương trình bậc 2====//
+      //   let a, b, c, X, delta;
+      //   (a = 1), (b = 2), (c = 3);
+      //   if (a == 0) {
+      //     if (b == 0) {
+      //       if (c == 0) {
+      //         console.log("Phương trình có vô số nghiệm");
+      //       } else {
+      //         console.log("Phương trình vô nghiệm");
+      //       }
+      //     } else {
+      //       X = -c / b;
+      //       alert("Phương trình có bậc 1 có nghiệm x = " + x);
+      //     }
+      //   } else {
+      //     delta = b * b - 4 * a * c;
+      //     if (delta < 0) {
+      //       alert("Phương trình vô nghiệm");
+      //     } else if (delta == 0) {
+      //       let x = -b / (2 * a);
+      //       alert("Phương trình có nghiệm kép x = " + x);
+      //     } else {
+      //       let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+      //       let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+      //       document.write(x1 + "<br>" + x2);
+      //     }
+      //   }
+      //===Giải phương trình ax + b = 0====//
+
+      /*let a = 1,
+        b = 5;
+      if (a === 0) {
+        if (b === 0) {
+          console.log("Phương trình vô số nghiệm");
+        } else {
+          console.log("Phương trình vô nghiệm");
+        }
+      } else {
+        let x = -b / a;
+        console.log(x);
+      }*/
+
+      //===Kiểm tra số chẵn , lẻ, số âm , số dương===//
+      let n = Number(prompt("Nhập số: "));
+      if (isNaN(n)) {
+        console.log("Bạn nhập không phải là số");
+      } else {
+        if (n > 0) {
+          //   console.log("Đây là số dương");
+        } else if (n < 0) {
+          alert("Đây là số âm");
+        } else if (n % 2 == 0) {
+          alert("Đây là số chẵn");
+        }
+      }
+    </script>
+  </body>
+</html>

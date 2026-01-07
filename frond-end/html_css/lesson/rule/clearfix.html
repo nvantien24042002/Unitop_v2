@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class clearfix</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box-parent {
+        width: 960px;
+        margin: 0 auto;
+        background-color: beige;
+      }
+      .box-left,
+      .box-right {
+        min-height: 600px;
+      }
+      .box-left {
+        width: 600px;
+        float: left;
+        background-color: beige;
+      }
+      .box-right {
+        width: 300px;
+        float: left;
+        background-color: aquamarine;
+      }
+      /* Áp dụng cho phần tử có class clearfix */
+      .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+    <h1>Clear fix</h1>
+    <div class="box-parent clearfix">
+      <div class="box-left">1</div>
+      <div class="box-right">2</div>
+    </div>
+  </body>
+</html>

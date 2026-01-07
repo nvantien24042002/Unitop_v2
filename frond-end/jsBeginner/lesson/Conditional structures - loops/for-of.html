@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For of</title>
+  </head>
+  <body>
+    <h1>For of loop structure</h1>
+    <script>
+      let list_number = [2, 4, 6, 8];
+      let t = 0;
+      for (let v of list_number) {
+        if (v % 2 == 0) {
+          t += v;
+        }
+      }
+      document.write(t);
+    </script>
+  </body>
+</html>

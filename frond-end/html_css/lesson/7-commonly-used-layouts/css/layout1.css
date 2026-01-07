@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+/* Comment header */
+#header {
+  background-color: #0073aa;
+  flex: 100%;
+  padding: 15px 0px;
+}
+ 
+#header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #f8f8f8;
+  font-weight: bold;
+}
+#content {
+  min-height: 668px;
+  background-color: #f4f4f4;
+  flex: 100%;
+}
+#footer {
+  background-color: #232323;
+  flex: 100%;
+  padding: 5px 0px;
+}
+#footer p {
+    font-size: 20px;
+    color: #f8f8f8;
+    font-weight: normal;
+    margin: 0;
+}

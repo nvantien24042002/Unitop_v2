@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kanji Trainer – Nhập nghĩa tiếng Việt</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: linear-gradient(135deg, #fdfbfb, #ebedee);
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+      h1 {
+        text-align: center;
+        margin: 0 0 6px;
+        font-size: 24px;
+      }
+      .sub {
+        text-align: center;
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 16px;
+      }
+      #layout {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      #main {
+        flex: 2 1 280px;
+        text-align: center;
+      }
+      #side {
+        flex: 1 1 220px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        max-height: 480px;
+        overflow-y: auto;
+        font-size: 13px;
+      }
+      #side h2 {
+        text-align: center;
+        margin: 2px 0 6px;
+        font-size: 15px;
+      }
+      .item-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 7px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .item-row:hover {
+        background: #e0f2f1;
+      }
+      .item-row.active {
+        background: #c8e6c9;
+      }
+      .item-kanji {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+      .item-read {
+        color: #555;
+        margin-right: 4px;
+      }
+      .item-mean {
+        color: #777;
+        font-size: 11px;
+      }
+
+      #card {
+        width: 260px;
+        min-height: 240px;
+        background: white;
+        margin: 10px auto 8px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 14px;
+        position: relative;
+      }
+      #face-label {
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        font-size: 11px;
+        color: #999;
+      }
+      #card-main {
+        font-size: 52px;
+        margin-bottom: 4px;
+      }
+      #card-sub {
+        font-size: 18px;
+        color: #555;
+        min-height: 22px;
+      }
+
+      .controls {
+        margin-top: 10px;
+      }
+      .btn {
+        padding: 6px 14px;
+        border-radius: 999px;
+        border: none;
+        background: #4caf50;
+        color: white;
+        font-size: 14px;
+        margin: 3px;
+        cursor: pointer;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+        transition: transform 0.1s, box-shadow 0.1s;
+      }
+      .btn.secondary {
+        background: #607d8b;
+      }
+      .btn.outline {
+        background: white;
+        color: #4caf50;
+        border: 1px solid #4caf50;
+        box-shadow: none;
+      }
+      .btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+      }
+
+      #input-area {
+        margin-top: 8px;
+      }
+      #vn-input {
+        width: 90%;
+        max-width: 320px;
+        padding: 6px 8px;
+        border-radius: 999px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+
+      #feedback {
+        margin-top: 6px;
+        min-height: 20px;
+        font-size: 14px;
+      }
+      #feedback.correct {
+        color: #2e7d32;
+      }
+      #feedback.wrong {
+        color: #c62828;
+      }
+
+      #extra-info {
+        margin-top: 4px;
+        font-size: 13px;
+        color: #555;
+      }
+
+      .top-buttons {
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .mode-btn {
+        padding: 4px 12px;
+        font-size: 12px;
+        border-radius: 999px;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        margin: 0 4px;
+      }
+      .mode-btn.active {
+        background: #4caf50;
+        color: white;
+        border-color: #4caf50;
+      }
+
+      @media (max-width: 780px) {
+        #layout {
+          flex-direction: column;
+        }
+        #side {
+          max-height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kanji Trainer – Nhập nghĩa tiếng Việt</h1>
+    <p class="sub">
+      Hiện Kanji + Hiragana → bạn tự gõ nghĩa tiếng Việt để nhớ lâu hơn 💪
+    </p>
+
+    <div class="top-buttons">
+      <button id="hiraBtn" class="mode-btn active" onclick="toggleHira()">
+        ひらがな: ON
+      </button>
+      <button id="showMeanBtn" class="mode-btn" onclick="toggleShowMean()">
+        Hiện đáp án VN
+      </button>
+    </div>
+
+    <div id="layout">
+      <div id="main">
+        <div id="card">
+          <div id="face-label">KANJI</div>
+          <div id="card-main">町</div>
+          <div id="card-sub">まち</div>
+        </div>
+
+        <div id="input-area">
+          <input
+            id="vn-input"
+            type="text"
+            placeholder="Nhập nghĩa tiếng Việt của từ này..."
+          />
+        </div>
+
+        <div class="controls">
+          <button class="btn" onclick="checkAnswer()">Check</button>
+          <button class="btn secondary" onclick="next()">Next ▶</button>
+          <button class="btn secondary" onclick="prev()">◀ Prev</button>
+          <button class="btn outline" onclick="randomCard()">Random 🎲</button>
+        </div>
+
+        <div id="feedback"></div>
+        <div id="extra-info"></div>
+      </div>
+
+      <div id="side">
+        <h2>Danh sách từ</h2>
+        <div id="list-body"></div>
+      </div>
+    </div>
+
+    <script>
+      const vocabList = [
+        { kanji: "紙", read: "かみ", mean: "tờ giấy" },
+        {
+          kanji: "日本語学校",
+          read: "にほんごがっこう",
+          mean: "trường tiếng Nhật",
+        },
+        { kanji: "月", read: "がつ", mean: "tháng" },
+        { kanji: "日", read: "にち", mean: "ngày" },
+        { kanji: "市", read: "し", mean: "thành phố" },
+        { kanji: "体育館", read: "たいいくかん", mean: "nhà thi đấu thể thao" },
+        { kanji: "利用料金", read: "りようりょうきん", mean: "phí sử dụng" },
+        { kanji: "時間", read: "じかん", mean: "thời gian" },
+        { kanji: "人", read: "ひと／にん", mean: "người" },
+        { kanji: "今週", read: "こんしゅう", mean: "tuần này" },
+        { kanji: "所", read: "ところ", mean: "chỗ; nơi" },
+        { kanji: "来る", read: "くる", mean: "đến" },
+        { kanji: "名前", read: "なまえ", mean: "tên" },
+        { kanji: "教える", read: "おしえる", mean: "dạy; nói cho biết" },
+
+        // Mondai 4 – bài 2
+        { kanji: "私", read: "わたし", mean: "tôi" },
+        { kanji: "妹", read: "いもうと", mean: "em gái" },
+        { kanji: "入る", read: "はいる", mean: "vào; tham gia" },
+        { kanji: "毎日", read: "まいにち", mean: "mỗi ngày" },
+        { kanji: "授業", read: "じゅぎょう", mean: "giờ học" },
+        { kanji: "練習", read: "れんしゅう", mean: "luyện tập" },
+        { kanji: "疲れる", read: "つかれる", mean: "mệt" },
+        { kanji: "夜", read: "よる", mean: "ban đêm" },
+        { kanji: "早く", read: "はやく", mean: "sớm" },
+        { kanji: "寝る", read: "ねる", mean: "ngủ" },
+        { kanji: "宿題", read: "しゅくだい", mean: "bài tập về nhà" },
+        { kanji: "学校", read: "がっこう", mean: "trường học" },
+        { kanji: "終わる", read: "おわる", mean: "kết thúc" },
+        { kanji: "予習", read: "よしゅう", mean: "chuẩn bị bài" },
+
+        // Mondai 4 – bài 3
+        { kanji: "友だち", read: "ともだち", mean: "bạn bè" },
+        { kanji: "日本", read: "にほん", mean: "Nhật Bản" },
+        { kanji: "週間", read: "しゅうかん", mean: "tuần lễ" },
+        { kanji: "行く", read: "いく", mean: "đi" },
+        { kanji: "大阪", read: "おおさか", mean: "Osaka" },
+        { kanji: "東京", read: "とうきょう", mean: "Tokyo" },
+        {
+          kanji: "新東京ホテル",
+          read: "しんとうきょうホテル",
+          mean: "khách sạn New Tokyo",
+        },
+        { kanji: "都合", read: "つごう", mean: "thời gian phù hợp" },
+
+        // Mondai 5
+        { kanji: "歳", read: "さい", mean: "tuổi" },
+        { kanji: "娘", read: "むすめ", mean: "con gái" },
+        { kanji: "絵", read: "え", mean: "tranh" },
+        { kanji: "好き", read: "すき", mean: "thích" },
+        { kanji: "上手", read: "じょうず", mean: "giỏi" },
+        { kanji: "先週", read: "せんしゅう", mean: "tuần trước" },
+        { kanji: "母", read: "はは", mean: "mẹ" },
+        { kanji: "遊ぶ", read: "あそぶ", mean: "chơi" },
+        { kanji: "楽しい", read: "たのしい", mean: "vui vẻ" },
+        { kanji: "考える", read: "かんがえる", mean: "suy nghĩ" },
+        { kanji: "見る", read: "みる", mean: "xem; nhìn" },
+        { kanji: "封筒", read: "ふうとう", mean: "phong bì" },
+        { kanji: "切手", read: "きって", mean: "tem" },
+        { kanji: "周り", read: "まわり", mean: "xung quanh" },
+        { kanji: "自分", read: "じぶん", mean: "bản thân" },
+        { kanji: "木", read: "き", mean: "cây" },
+        { kanji: "鳥", read: "とり", mean: "chim" },
+        { kanji: "犬", read: "いぬ", mean: "chó" },
+        { kanji: "草", read: "くさ", mean: "cỏ" },
+        { kanji: "太陽", read: "たいよう", mean: "mặt trời" },
+        { kanji: "写真", read: "しゃしん", mean: "ảnh" },
+        { kanji: "送る", read: "おくる", mean: "gửi" },
+        { kanji: "喜ぶ", read: "よろこぶ", mean: "vui mừng" },
+      ];
+
+      let idx = 0;
+      let showHira = true;
+      let showMean = false;
+
+      const cardMain = document.getElementById("card-main");
+      const cardSub = document.getElementById("card-sub");
+      const hiraBtn = document.getElementById("hiraBtn");
+      const showMeanBtn = document.getElementById("showMeanBtn");
+      const listBody = document.getElementById("list-body");
+      const vnInput = document.getElementById("vn-input");
+      const feedback = document.getElementById("feedback");
+      const extraInfo = document.getElementById("extra-info");
+
+      function buildList() {
+        listBody.innerHTML = "";
+        vocabList.forEach((v, i) => {
+          const row = document.createElement("div");
+          row.className = "item-row";
+          row.onclick = () => {
+            idx = i;
+            updateCard();
+          };
+
+          const left = document.createElement("div");
+          left.style.display = "flex";
+          left.style.alignItems = "center";
+
+          const k = document.createElement("div");
+          k.className = "item-kanji";
+          k.textContent = v.kanji;
+
+          const r = document.createElement("div");
+          r.className = "item-read";
+          r.textContent = v.read;
+
+          left.appendChild(k);
+          left.appendChild(r);
+
+          const m = document.createElement("div");
+          m.className = "item-mean";
+          m.textContent = v.mean;
+
+          row.appendChild(left);
+          row.appendChild(m);
+          listBody.appendChild(row);
+        });
+        highlightActive();
+        updateHiraDisplay();
+        updateMeanDisplay();
+      }
+
+      function highlightActive() {
+        const rows = document.querySelectorAll(".item-row");
+        rows.forEach((r, i) => r.classList.toggle("active", i === idx));
+      }
+
+      function updateHiraDisplay() {
+        const reads = document.querySelectorAll(".item-read");
+        reads.forEach((el) => {
+          el.style.display = showHira ? "inline-block" : "none";
+        });
+        hiraBtn.classList.toggle("active", showHira);
+        hiraBtn.textContent = showHira ? "ひらがな: ON" : "ひらがな: OFF";
+      }
+
+      function updateMeanDisplay() {
+        const means = document.querySelectorAll(".item-mean");
+        means.forEach((el) => {
+          el.style.display = showMean ? "inline-block" : "none";
+        });
+        showMeanBtn.classList.toggle("active", showMean);
+        showMeanBtn.textContent = showMean ? "Ẩn đáp án VN" : "Hiện đáp án VN";
+      }
+
+      function normalizeVN(text) {
+        return text.toLowerCase().trim().replace(/\s+/g, " ");
+      }
+
+      function updateCard() {
+        highlightActive();
+        const v = vocabList[idx];
+        cardMain.textContent = v.kanji;
+        cardSub.textContent = showHira ? v.read : "";
+        vnInput.value = "";
+        feedback.textContent = "";
+        feedback.classList.remove("correct", "wrong");
+        extraInfo.textContent = showMean ? "Đáp án: " + v.mean : "";
+      }
+
+      function next() {
+        idx = (idx + 1) % vocabList.length;
+        updateCard();
+      }
+      function prev() {
+        idx = (idx - 1 + vocabList.length) % vocabList.length;
+        updateCard();
+      }
+      function randomCard() {
+        if (vocabList.length <= 1) return;
+        let old = idx;
+        while (true) {
+          const r = Math.floor(Math.random() * vocabList.length);
+          if (r !== old) {
+            idx = r;
+            break;
+          }
+        }
+        updateCard();
+      }
+
+      function checkAnswer() {
+        const v = vocabList[idx];
+        const user = normalizeVN(vnInput.value);
+        const correct = normalizeVN(v.mean);
+
+        feedback.classList.remove("correct", "wrong");
+
+        if (!user) {
+          feedback.textContent = "Bạn chưa nhập nghĩa tiếng Việt.";
+          return;
+        }
+
+        if (user === correct) {
+          feedback.textContent = "Đúng rồi! 🎉";
+          feedback.classList.add("correct");
+        } else {
+          feedback.textContent = "Chưa chính xác 😅";
+          feedback.classList.add("wrong");
+        }
+
+        if (showMean) {
+          extraInfo.textContent = "Đáp án: " + v.mean;
+        } else {
+          extraInfo.textContent =
+            'Gợi ý: đáp án đúng có dạng gần với: "' + v.mean + '"';
+        }
+      }
+
+      function toggleHira() {
+        showHira = !showHira;
+        updateHiraDisplay();
+        updateCard();
+      }
+
+      function toggleShowMean() {
+        showMean = !showMean;
+        updateMeanDisplay();
+        updateCard();
+      }
+
+      /* init */
+      buildList();
+      updateCard();
+
+      /* Enter = check */
+      vnInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          checkAnswer();
+        }
+      });
+    </script>
+  </body>
+</html>

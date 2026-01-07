@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+  ul, ol {
+    list-style: none;
+  }
+  button, a {
+    cursor: pointer;
+    font: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+.justify-content-between {
+  justify-content: space-between;
+}
+.d-flex{
+  display: flex;
+}

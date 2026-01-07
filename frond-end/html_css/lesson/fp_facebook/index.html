@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mimi N3 Unit 1 – Quiz Max (JP ⇆ VI)</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f4f5fb;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 780px;
+        background: #ffffff;
+        border-radius: 18px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+        padding: 18px 20px 20px;
+      }
+
+      .app-header {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 7px;
+      }
+
+      .title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #111827;
+      }
+
+      .subtitle {
+        font-size: 0.86rem;
+        color: #6b7280;
+        margin-top: 2px;
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 6px;
+        font-size: 0.85rem;
+        color: #4b5563;
+      }
+
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: #eef2ff;
+        color: #4f46e5;
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+
+      .mode-pill {
+        background: #ecfeff;
+        color: #0f766e;
+        margin-left: 4px;
+      }
+
+      .session-pill {
+        background: #fef9c3;
+        color: #854d0e;
+        margin-left: 4px;
+      }
+
+      .direction-toggle,
+      .session-toggle {
+        display: inline-flex;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+      }
+
+      .direction-btn,
+      .size-btn {
+        padding: 3px 10px;
+        font-size: 0.78rem;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        color: #6b7280;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .direction-btn.active,
+      .size-btn.active {
+        background: #4f46e5;
+        color: #ffffff;
+      }
+
+      .progress-bar-wrapper {
+        margin-top: 8px;
+        width: 100%;
+        height: 6px;
+        border-radius: 999px;
+        background: #e5e7eb;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #4f46e5, #22c55e);
+        transition: width 0.2s ease;
+      }
+
+      .question-card {
+        margin-top: 14px;
+        padding: 14px 14px 16px;
+        border-radius: 14px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+      }
+
+      .label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+
+      .word {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 4px;
+        line-height: 1.35;
+      }
+
+      .kana {
+        font-size: 0.96rem;
+        color: #4b5563;
+        margin-bottom: 4px;
+      }
+
+      .index {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+
+      .options {
+        margin-top: 14px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .option-btn {
+        width: 100%;
+        text-align: left;
+        border-radius: 999px;
+        border: 1px solid #e5e7eb;
+        padding: 8px 12px;
+        background: #ffffff;
+        cursor: pointer;
+        font-size: 0.94rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: background 0.15s ease, box-shadow 0.15s ease,
+          transform 0.04s ease, border-color 0.12s ease;
+      }
+
+      .option-btn span {
+        pointer-events: none;
+      }
+
+      .option-index {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #9ca3af;
+        margin-right: 8px;
+      }
+
+      .option-main {
+        flex: 1;
+        color: #111827;
+      }
+
+      .option-sub {
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-left: 4px;
+      }
+
+      .option-btn:hover:not(:disabled) {
+        background: #f3f4ff;
+        box-shadow: 0 2px 6px rgba(79, 70, 229, 0.18);
+        border-color: #c7d2fe;
+        transform: translateY(-1px);
+      }
+
+      .option-btn.correct {
+        background: #ecfdf3;
+        border-color: #22c55e;
+        color: #166534;
+      }
+
+      .option-btn.wrong {
+        background: #fef2f2;
+        border-color: #f97373;
+        color: #991b1b;
+      }
+
+      .option-btn:disabled {
+        cursor: default;
+        opacity: 0.9;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .feedback {
+        margin-top: 12px;
+        font-size: 0.9rem;
+      }
+
+      .feedback-text {
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .feedback-text.correct {
+        color: #15803d;
+      }
+
+      .feedback-text.wrong {
+        color: #b91c1c;
+      }
+
+      .example-jp {
+        font-size: 0.9rem;
+        color: #111827;
+        margin-bottom: 2px;
+      }
+
+      .example-vi {
+        font-size: 0.86rem;
+        color: #4b5563;
+      }
+
+      .summary {
+        font-size: 0.85rem;
+        color: #4b5563;
+        margin-top: 6px;
+      }
+
+      .controls {
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 7px 13px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.86rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.15s ease, box-shadow 0.15s ease,
+          transform 0.04s ease, opacity 0.12s ease;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: #4f46e5;
+        color: #ffffff;
+        box-shadow: 0 4px 10px rgba(79, 70, 229, 0.35);
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        background: #4338ca;
+        box-shadow: 0 5px 12px rgba(79, 70, 229, 0.55);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: #e5e7eb;
+        color: #374151;
+      }
+
+      .btn-secondary:hover:not(:disabled) {
+        background: #d1d5db;
+        transform: translateY(-1px);
+      }
+
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .footer-text {
+        font-size: 0.72rem;
+        color: #9ca3af;
+        text-align: right;
+        margin-top: 4px;
+      }
+
+      /* Stats box */
+      .stats-box {
+        margin-top: 14px;
+        padding: 12px 12px 10px;
+        border-radius: 14px;
+        background: #fefefe;
+        border: 1px dashed #e5e7eb;
+      }
+
+      .stats-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 6px;
+      }
+
+      .stats-subtitle {
+        font-size: 0.78rem;
+        color: #6b7280;
+        margin-bottom: 6px;
+      }
+
+      .stats-empty {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        font-style: italic;
+      }
+
+      .stats-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+      }
+
+      .stats-table th,
+      .stats-table td {
+        padding: 4px 6px;
+        text-align: left;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .stats-table th {
+        font-weight: 600;
+        color: #4b5563;
+        background: #f9fafb;
+      }
+
+      .stats-tag {
+        font-size: 0.7rem;
+        padding: 1px 4px;
+        border-radius: 999px;
+        background: #fee2e2;
+        color: #b91c1c;
+        margin-left: 4px;
+      }
+
+      @media (max-width: 640px) {
+        .app {
+          padding: 14px 11px 14px;
+          border-radius: 14px;
+        }
+        .title {
+          font-size: 1.05rem;
+        }
+        .word {
+          font-size: 1.05rem;
+        }
+        .options {
+          gap: 6px;
+        }
+        .direction-btn,
+        .size-btn {
+          padding: 3px 7px;
+        }
+        .stats-table th,
+        .stats-table td {
+          padding: 3px 4px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <div class="title">Mimi Kara Oboeru N3 – Unit 1</div>
+        <div class="subtitle">
+          Quiz 50 danh từ A · Luyện hai chiều JP ⇆ VI · Chọn 10/20/50 câu · Lưu
+          & thống kê câu sai
+        </div>
+
+        <div class="top-row">
+          <div>
+            <span class="pill" id="progressPill">Câu 1 / 50</span>
+            <span class="pill mode-pill" id="modePill">Chế độ: Toàn bộ</span>
+            <span class="pill session-pill" id="sessionPill"
+              >Phiên: 50 câu</span
+            >
+          </div>
+          <div>
+            <span
+              >Điểm: <span id="scoreText">0</span> /
+              <span id="answeredText">0</span></span
+            >
+            &nbsp;·&nbsp;
+            <span>Đúng: <span id="percentText">0</span>%</span>
+          </div>
+        </div>
+
+        <div class="top-row" style="margin-top: 6px">
+          <div class="direction-toggle">
+            <button
+              class="direction-btn active"
+              data-direction="vi-jp"
+              id="btnViJp"
+            >
+              VI → JP
+            </button>
+            <button class="direction-btn" data-direction="jp-vi" id="btnJpVi">
+              JP → VI
+            </button>
+          </div>
+          <div class="session-toggle">
+            <button class="size-btn" data-size="10" id="btnSize10">
+              10 câu
+            </button>
+            <button class="size-btn" data-size="20" id="btnSize20">
+              20 câu
+            </button>
+            <button class="size-btn active" data-size="50" id="btnSize50">
+              50 câu
+            </button>
+          </div>
+        </div>
+
+        <div class="top-row" style="margin-top: 4px">
+          <div style="font-size: 0.78rem; color: #6b7280">
+            Gợi ý: phím <b>A,B,C,D</b> để chọn đáp án · <b>Enter</b> sang câu
+            tiếp.
+          </div>
+        </div>
+
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </header>
+
+      <section class="question-card">
+        <div class="label" id="promptLabel">Nghĩa tiếng Việt</div>
+        <div class="word" id="wordText">nam giới</div>
+        <div class="kana" id="kanaText">Chọn từ tiếng Nhật tương ứng.</div>
+        <div class="index" id="indexText">
+          Chế độ: Toàn bộ 50 từ · Câu 1 / 50
+        </div>
+
+        <div class="options" id="optionsContainer"></div>
+
+        <div class="feedback" id="feedbackBox" style="display: none">
+          <div class="feedback-text" id="feedbackText"></div>
+          <div class="example-jp" id="exampleJp"></div>
+          <div class="example-vi" id="exampleVi"></div>
+          <div class="summary" id="summaryText"></div>
+        </div>
+
+        <div class="controls">
+          <button class="btn btn-primary" id="nextBtn" disabled>
+            ➡ Câu tiếp
+          </button>
+          <button class="btn btn-secondary" id="reviewBtn" disabled>
+            🧪 Ôn lại câu sai
+          </button>
+          <button class="btn btn-secondary" id="restartBtn">
+            🔁 Làm lại (phiên hiện tại)
+          </button>
+        </div>
+      </section>
+
+      <section class="stats-box" id="statsBox">
+        <div class="stats-title">Top từ sai nhiều nhất</div>
+        <div class="stats-subtitle">
+          Thống kê tổng hợp cho tất cả chế độ & phiên. Dữ liệu được lưu trên
+          trình duyệt của bạn.
+        </div>
+        <div id="statsContent" class="stats-content">
+          <!-- sẽ được fill bằng JS -->
+        </div>
+      </section>
+
+      <div class="footer-text">
+        © Nguyễn Văn Tiến &amp; ChatGPT – Mimi N3 Unit 1 Quiz Max
+      </div>
+    </div>
+
+    <script>
+      // ====== DATA 50 TỪ VỰNG ======
+      const vocabList = [
+        {
+          id: 1,
+          kanji: "男性",
+          kana: "だんせい",
+          meaning: "nam giới",
+          jp: "その男性は先生です。",
+          vi: "Người đàn ông đó là giáo viên.",
+        },
+        {
+          id: 2,
+          kanji: "女性",
+          kana: "じょせい",
+          meaning: "phụ nữ",
+          jp: "あの女性はきれいです。",
+          vi: "Cô gái kia đẹp.",
+        },
+        {
+          id: 3,
+          kanji: "高齢",
+          kana: "こうれい",
+          meaning: "cao tuổi",
+          jp: "高齢の人に席をゆずります。",
+          vi: "Nhường ghế cho người cao tuổi.",
+        },
+        {
+          id: 4,
+          kanji: "年上",
+          kana: "としうえ",
+          meaning: "người lớn tuổi hơn",
+          jp: "彼は私より年上です。",
+          vi: "Anh ấy lớn tuổi hơn tôi.",
+        },
+        {
+          id: 5,
+          kanji: "目上",
+          kana: "めうえ",
+          meaning: "cấp trên",
+          jp: "目上の人には丁寧に話します。",
+          vi: "Nói chuyện lịch sự với người cấp trên.",
+        },
+        {
+          id: 6,
+          kanji: "先輩",
+          kana: "せんぱい",
+          meaning: "tiền bối",
+          jp: "先輩に仕事を教えてもらいました。",
+          vi: "Tôi được đàn anh chỉ việc.",
+        },
+        {
+          id: 7,
+          kanji: "後輩",
+          kana: "こうはい",
+          meaning: "hậu bối",
+          jp: "後輩を手伝ってあげた。",
+          vi: "Tôi giúp đỡ đàn em.",
+        },
+        {
+          id: 8,
+          kanji: "上司",
+          kana: "じょうし",
+          meaning: "cấp trên, sếp",
+          jp: "上司に相談します。",
+          vi: "Tôi hỏi ý kiến sếp.",
+        },
+        {
+          id: 9,
+          kanji: "相手",
+          kana: "あいて",
+          meaning: "đối phương",
+          jp: "相手の目を見て話す。",
+          vi: "Hãy nhìn vào mắt đối phương khi nói.",
+        },
+        {
+          id: 10,
+          kanji: "知り合い",
+          kana: "しりあい",
+          meaning: "người quen",
+          jp: "彼は会社の知り合いです。",
+          vi: "Anh ấy là người quen ở công ty.",
+        },
+        {
+          id: 11,
+          kanji: "友人",
+          kana: "ゆうじん",
+          meaning: "bạn thân",
+          jp: "友人と旅行します。",
+          vi: "Tôi đi du lịch với bạn thân.",
+        },
+        {
+          id: 12,
+          kanji: "仲",
+          kana: "なか",
+          meaning: "mối quan hệ",
+          jp: "二人は仲がいい。",
+          vi: "Hai người họ rất thân.",
+        },
+        {
+          id: 13,
+          kanji: "生年月日",
+          kana: "せいねんがっぴ",
+          meaning: "ngày tháng năm sinh",
+          jp: "生年月日を書いてください。",
+          vi: "Hãy viết ngày tháng năm sinh.",
+        },
+        {
+          id: 14,
+          kanji: "誕生",
+          kana: "たんじょう",
+          meaning: "sinh ra",
+          jp: "子供の誕生を祝います。",
+          vi: "Chúc mừng sự ra đời của em bé.",
+        },
+        {
+          id: 15,
+          kanji: "年",
+          kana: "とし",
+          meaning: "năm, tuổi",
+          jp: "年をとっても元気です。",
+          vi: "Dù lớn tuổi vẫn khỏe.",
+        },
+        {
+          id: 16,
+          kanji: "出身",
+          kana: "しゅっしん",
+          meaning: "xuất thân",
+          jp: "私はハノイ出身です。",
+          vi: "Tôi đến từ Hà Nội.",
+        },
+        {
+          id: 17,
+          kanji: "故郷",
+          kana: "こきょう",
+          meaning: "quê hương",
+          jp: "久しぶりに故郷へ帰った。",
+          vi: "Lâu rồi tôi mới về quê.",
+        },
+        {
+          id: 18,
+          kanji: "成長",
+          kana: "せいちょう",
+          meaning: "trưởng thành, phát triển",
+          jp: "子供は早く成長します。",
+          vi: "Trẻ con lớn nhanh.",
+        },
+        {
+          id: 19,
+          kanji: "成人",
+          kana: "せいじん",
+          meaning: "người trưởng thành",
+          jp: "彼は今年成人した。",
+          vi: "Anh ấy trưởng thành năm nay.",
+        },
+        {
+          id: 20,
+          kanji: "合格",
+          kana: "ごうかく",
+          meaning: "đỗ, đậu",
+          jp: "試験に合格した。",
+          vi: "Tôi đỗ kỳ thi.",
+        },
+        {
+          id: 21,
+          kanji: "進学",
+          kana: "しんがく",
+          meaning: "học lên cao",
+          jp: "大学に進学します。",
+          vi: "Tôi học lên đại học.",
+        },
+        {
+          id: 22,
+          kanji: "退学",
+          kana: "たいがく",
+          meaning: "thôi học",
+          jp: "彼は病気で退学した。",
+          vi: "Anh ấy thôi học vì bệnh.",
+        },
+        {
+          id: 23,
+          kanji: "就職",
+          kana: "しゅうしょく",
+          meaning: "tìm việc, đi làm",
+          jp: "大手会社に就職した。",
+          vi: "Tôi xin được việc ở công ty lớn.",
+        },
+        {
+          id: 24,
+          kanji: "退職",
+          kana: "たいしょく",
+          meaning: "nghỉ việc",
+          jp: "父は今年退職する。",
+          vi: "Ba tôi nghỉ việc năm nay.",
+        },
+        {
+          id: 25,
+          kanji: "失業",
+          kana: "しつぎょう",
+          meaning: "thất nghiệp",
+          jp: "失業して困っている。",
+          vi: "Tôi thất nghiệp và gặp khó khăn.",
+        },
+        {
+          id: 26,
+          kanji: "残業",
+          kana: "ざんぎょう",
+          meaning: "làm thêm",
+          jp: "今日は残業があります。",
+          vi: "Hôm nay tôi phải làm thêm.",
+        },
+        {
+          id: 27,
+          kanji: "生活",
+          kana: "せいかつ",
+          meaning: "cuộc sống",
+          jp: "日本での生活に慣れた。",
+          vi: "Tôi quen với cuộc sống ở Nhật.",
+        },
+        {
+          id: 28,
+          kanji: "通勤",
+          kana: "つうきん",
+          meaning: "đi làm",
+          jp: "毎日電車で通勤している。",
+          vi: "Hằng ngày tôi đi làm bằng tàu.",
+        },
+        {
+          id: 29,
+          kanji: "学歴",
+          kana: "がくれき",
+          meaning: "học vấn",
+          jp: "学歴より実力が大事だ。",
+          vi: "Năng lực quan trọng hơn học vấn.",
+        },
+        {
+          id: 30,
+          kanji: "給料",
+          kana: "きゅうりょう",
+          meaning: "lương",
+          jp: "今月の給料をもらった。",
+          vi: "Tôi đã nhận lương tháng này.",
+        },
+        {
+          id: 31,
+          kanji: "面接",
+          kana: "めんせつ",
+          meaning: "phỏng vấn",
+          jp: "今日は面接があります。",
+          vi: "Hôm nay tôi có phỏng vấn.",
+        },
+        {
+          id: 32,
+          kanji: "休憩",
+          kana: "きゅうけい",
+          meaning: "nghỉ giải lao",
+          jp: "少し休憩しましょう。",
+          vi: "Nghỉ một chút nhé.",
+        },
+        {
+          id: 33,
+          kanji: "観光",
+          kana: "かんこう",
+          meaning: "tham quan",
+          jp: "京都を観光したい。",
+          vi: "Tôi muốn tham quan Kyoto.",
+        },
+        {
+          id: 34,
+          kanji: "帰国",
+          kana: "きこく",
+          meaning: "về nước",
+          jp: "来月帰国します。",
+          vi: "Tháng sau tôi về nước.",
+        },
+        {
+          id: 35,
+          kanji: "帰省",
+          kana: "きせい",
+          meaning: "về quê",
+          jp: "正月に帰省します。",
+          vi: "Tết tôi về quê.",
+        },
+        {
+          id: 36,
+          kanji: "帰宅",
+          kana: "きたく",
+          meaning: "về nhà",
+          jp: "毎日9時に帰宅する。",
+          vi: "Hằng ngày tôi về nhà lúc 9 giờ.",
+        },
+        {
+          id: 37,
+          kanji: "参加",
+          kana: "さんか",
+          meaning: "tham gia",
+          jp: "イベントに参加します。",
+          vi: "Tôi tham gia sự kiện.",
+        },
+        {
+          id: 38,
+          kanji: "出席",
+          kana: "しゅっせき",
+          meaning: "có mặt, tham dự",
+          jp: "会議に出席した。",
+          vi: "Tôi có mặt trong cuộc họp.",
+        },
+        {
+          id: 39,
+          kanji: "欠席",
+          kana: "けっせき",
+          meaning: "vắng mặt",
+          jp: "今日は欠席します。",
+          vi: "Hôm nay tôi vắng mặt.",
+        },
+        {
+          id: 40,
+          kanji: "遅刻",
+          kana: "ちこく",
+          meaning: "đi trễ",
+          jp: "授業に遅刻した。",
+          vi: "Tôi đi học trễ.",
+        },
+        {
+          id: 41,
+          kanji: "化粧",
+          kana: "けしょう",
+          meaning: "trang điểm",
+          jp: "毎朝化粧をします。",
+          vi: "Tôi trang điểm mỗi sáng.",
+        },
+        {
+          id: 42,
+          kanji: "計算",
+          kana: "けいさん",
+          meaning: "tính toán",
+          jp: "料金を計算してください。",
+          vi: "Hãy tính tiền giúp tôi.",
+        },
+        {
+          id: 43,
+          kanji: "計画",
+          kana: "けいかく",
+          meaning: "kế hoạch",
+          jp: "旅行の計画を立てる。",
+          vi: "Lập kế hoạch du lịch.",
+        },
+        {
+          id: 44,
+          kanji: "成功",
+          kana: "せいこう",
+          meaning: "thành công",
+          jp: "計画は成功した。",
+          vi: "Kế hoạch đã thành công.",
+        },
+        {
+          id: 45,
+          kanji: "失敗",
+          kana: "しっぱい",
+          meaning: "thất bại",
+          jp: "テストで失敗した。",
+          vi: "Tôi thất bại trong bài kiểm tra.",
+        },
+        {
+          id: 46,
+          kanji: "準備",
+          kana: "じゅんび",
+          meaning: "chuẩn bị",
+          jp: "会議の準備をする。",
+          vi: "Chuẩn bị cho cuộc họp.",
+        },
+        {
+          id: 47,
+          kanji: "整理",
+          kana: "せいり",
+          meaning: "sắp xếp",
+          jp: "机を整理した。",
+          vi: "Tôi sắp xếp bàn làm việc.",
+        },
+        {
+          id: 48,
+          kanji: "注文",
+          kana: "ちゅうもん",
+          meaning: "gọi món, đặt hàng",
+          jp: "コーヒーを注文した。",
+          vi: "Tôi gọi cà phê.",
+        },
+        {
+          id: 49,
+          kanji: "貯金",
+          kana: "ちょきん",
+          meaning: "tiết kiệm tiền",
+          jp: "毎月貯金している。",
+          vi: "Tôi tiết kiệm mỗi tháng.",
+        },
+        {
+          id: 50,
+          kanji: "徹夜",
+          kana: "てつや",
+          meaning: "thức khuya, thức trắng đêm",
+          jp: "昨日は徹夜した。",
+          vi: "Tôi đã thức trắng đêm hôm qua.",
+        },
+      ];
+
+      // ====== DOM ELEMENTS ======
+      const wordText = document.getElementById("wordText");
+      const kanaText = document.getElementById("kanaText");
+      const promptLabel = document.getElementById("promptLabel");
+      const indexText = document.getElementById("indexText");
+      const progressPill = document.getElementById("progressPill");
+      const modePill = document.getElementById("modePill");
+      const sessionPill = document.getElementById("sessionPill");
+      const progressBar = document.getElementById("progressBar");
+      const optionsContainer = document.getElementById("optionsContainer");
+      const feedbackBox = document.getElementById("feedbackBox");
+      const feedbackText = document.getElementById("feedbackText");
+      const exampleJp = document.getElementById("exampleJp");
+      const exampleVi = document.getElementById("exampleVi");
+      const summaryText = document.getElementById("summaryText");
+      const nextBtn = document.getElementById("nextBtn");
+      const restartBtn = document.getElementById("restartBtn");
+      const reviewBtn = document.getElementById("reviewBtn");
+      const scoreText = document.getElementById("scoreText");
+      const answeredText = document.getElementById("answeredText");
+      const percentText = document.getElementById("percentText");
+      const btnViJp = document.getElementById("btnViJp");
+      const btnJpVi = document.getElementById("btnJpVi");
+      const btnSize10 = document.getElementById("btnSize10");
+      const btnSize20 = document.getElementById("btnSize20");
+      const btnSize50 = document.getElementById("btnSize50");
+      const statsContent = document.getElementById("statsContent");
+
+      // ====== STATE ======
+      let direction = "vi-jp"; // "vi-jp" or "jp-vi"
+      let mode = "all"; // "all" or "review"
+      let sessionSize = 50; // 10, 20, 50
+      let mainOrder = [];
+      let currentOrder = [];
+      let currentIndex = 0;
+      let score = 0;
+      let answeredCount = 0;
+      let questionLocked = false;
+
+      // wrongSets[direction] = Set index từ vựng bị sai
+      const wrongSets = {
+        "vi-jp": new Set(),
+        "jp-vi": new Set(),
+      };
+
+      // thống kê tổng cho từng từ
+      // perVocabStats[i] = {attempts, wrongs}
+      let perVocabStats = new Array(vocabList.length)
+        .fill(0)
+        .map(() => ({ attempts: 0, wrongs: 0 }));
+
+      const STORAGE_KEYS = {
+        "vi-jp": "mimi_unit1_wrong_vi_jp",
+        "jp-vi": "mimi_unit1_wrong_jp_vi",
+      };
+      const STATS_KEY = "mimi_unit1_stats_v1";
+
+      // ====== HELPERS ======
+      function shuffle(array) {
+        const arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function saveWrongSets() {
+        for (const dir of ["vi-jp", "jp-vi"]) {
+          const arr = Array.from(wrongSets[dir]);
+          try {
+            localStorage.setItem(STORAGE_KEYS[dir], JSON.stringify(arr));
+          } catch (e) {}
+        }
+      }
+
+      function loadWrongSets() {
+        for (const dir of ["vi-jp", "jp-vi"]) {
+          try {
+            const raw = localStorage.getItem(STORAGE_KEYS[dir]);
+            if (raw) {
+              const arr = JSON.parse(raw);
+              wrongSets[dir] = new Set(arr);
+            }
+          } catch (e) {}
+        }
+      }
+
+      function saveStats() {
+        try {
+          localStorage.setItem(STATS_KEY, JSON.stringify(perVocabStats));
+        } catch (e) {}
+      }
+
+      function loadStats() {
+        try {
+          const raw = localStorage.getItem(STATS_KEY);
+          if (raw) {
+            const arr = JSON.parse(raw);
+            if (Array.isArray(arr) && arr.length === vocabList.length) {
+              perVocabStats = arr;
+            }
+          }
+        } catch (e) {}
+      }
+
+      function updateReviewButtonState() {
+        reviewBtn.disabled = wrongSets[direction].size === 0;
+      }
+
+      function updateScoreUI() {
+        scoreText.textContent = String(score);
+        answeredText.textContent = String(answeredCount);
+        const pct =
+          answeredCount === 0 ? 0 : Math.round((score / answeredCount) * 100);
+        percentText.textContent = String(pct);
+      }
+
+      function updateProgressBar() {
+        const total = currentOrder.length || 1;
+        const pct = (currentIndex / total) * 100;
+        progressBar.style.width = pct + "%";
+      }
+
+      function updateSessionPill() {
+        if (mode === "review") {
+          sessionPill.textContent = "Phiên: Ôn câu sai";
+        } else {
+          sessionPill.textContent = `Phiên: ${sessionSize} câu`;
+        }
+      }
+
+      // ====== STATS UI ======
+      function refreshStatsUI() {
+        const items = perVocabStats
+          .map((st, idx) => ({ idx, ...st }))
+          .filter((x) => x.wrongs > 0)
+          .sort((a, b) => {
+            if (b.wrongs !== a.wrongs) return b.wrongs - a.wrongs;
+            return b.attempts - a.attempts;
+          })
+          .slice(0, 5);
+
+        if (items.length === 0) {
+          statsContent.innerHTML =
+            '<div class="stats-empty">Chưa có dữ liệu lỗi. Hãy làm quiz để xem từ nào hay sai nhé.</div>';
+          return;
+        }
+
+        let html =
+          '<table class="stats-table"><thead><tr><th>#</th><th>Từ tiếng Nhật</th><th>Nghĩa tiếng Việt</th><th>Sai/Tổng</th><th>Tỉ lệ sai</th></tr></thead><tbody>';
+        items.forEach((it, rank) => {
+          const v = vocabList[it.idx];
+          const rate =
+            it.attempts === 0 ? 0 : Math.round((it.wrongs / it.attempts) * 100);
+          html += `<tr>
+          <td>${rank + 1}</td>
+          <td>${v.kanji}（${v.kana}）</td>
+          <td>${v.meaning}</td>
+          <td>${it.wrongs} / ${it.attempts}</td>
+          <td>${rate}%${
+            rate >= 50 ? '<span class="stats-tag">cần ôn</span>' : ""
+          }</td>
+        </tr>`;
+        });
+        html += "</tbody></table>";
+        statsContent.innerHTML = html;
+      }
+
+      // ====== QUIZ LOGIC ======
+      function initQuiz(resetWrong = false) {
+        if (resetWrong) {
+          wrongSets["vi-jp"].clear();
+          wrongSets["jp-vi"].clear();
+          saveWrongSets();
+        }
+        mode = "all";
+        modePill.textContent = "Chế độ: Toàn bộ";
+        updateSessionPill();
+
+        const allIdx = vocabList.map((_, idx) => idx);
+        const shuffled = shuffle(allIdx);
+        const size = Math.min(sessionSize, shuffled.length);
+        mainOrder = shuffled.slice(0, size);
+
+        currentOrder = [...mainOrder];
+        currentIndex = 0;
+        score = 0;
+        answeredCount = 0;
+        updateScoreUI();
+        updateReviewButtonState();
+        loadQuestion();
+      }
+
+      function setDirection(newDirection) {
+        if (direction === newDirection) return;
+        direction = newDirection;
+
+        // toggle button UI
+        if (direction === "vi-jp") {
+          btnViJp.classList.add("active");
+          btnJpVi.classList.remove("active");
+        } else {
+          btnJpVi.classList.add("active");
+          btnViJp.classList.remove("active");
+        }
+
+        initQuiz(false);
+      }
+
+      function setSessionSize(newSize) {
+        sessionSize = newSize;
+        btnSize10.classList.toggle("active", sessionSize === 10);
+        btnSize20.classList.toggle("active", sessionSize === 20);
+        btnSize50.classList.toggle("active", sessionSize === 50);
+        initQuiz(false);
+      }
+
+      function getPromptAndOptions(vocabIndex) {
+        const vocab = vocabList[vocabIndex];
+
+        if (direction === "vi-jp") {
+          const prompt = vocab.meaning;
+          const subtitle = "Chọn từ tiếng Nhật tương ứng với nghĩa trên.";
+          const label = "Nghĩa tiếng Việt";
+
+          const optionsIdx = [vocabIndex];
+          while (optionsIdx.length < 4) {
+            const cand = Math.floor(Math.random() * vocabList.length);
+            if (!optionsIdx.includes(cand)) optionsIdx.push(cand);
+          }
+          const shuffled = shuffle(optionsIdx).map((idx) => ({
+            index: idx,
+            main: vocabList[idx].kanji,
+            sub: vocabList[idx].kana,
+          }));
+
+          return { prompt, subtitle, label, options: shuffled };
+        } else {
+          const prompt = vocab.kanji + "（" + vocab.kana + "）";
+          const subtitle = "Chọn nghĩa tiếng Việt đúng.";
+          const label = "Từ tiếng Nhật";
+
+          const optionsIdx = [vocabIndex];
+          while (optionsIdx.length < 4) {
+            const cand = Math.floor(Math.random() * vocabList.length);
+            if (!optionsIdx.includes(cand)) optionsIdx.push(cand);
+          }
+          const shuffled = shuffle(optionsIdx).map((idx) => ({
+            index: idx,
+            main: vocabList[idx].meaning,
+            sub: "",
+          }));
+
+          return { prompt, subtitle, label, options: shuffled };
+        }
+      }
+
+      function loadQuestion() {
+        feedbackBox.style.display = "none";
+        feedbackText.textContent = "";
+        exampleJp.textContent = "";
+        exampleVi.textContent = "";
+        summaryText.textContent = "";
+        nextBtn.disabled = true;
+        questionLocked = false;
+        updateProgressBar();
+
+        if (currentIndex >= currentOrder.length) {
+          const textEnd =
+            mode === "review"
+              ? "Đã ôn xong tất cả câu sai trong chế độ này."
+              : "Hoàn thành toàn bộ câu trong phiên hiện tại.";
+          wordText.textContent = textEnd;
+          kanaText.textContent =
+            wrongSets[direction].size > 0
+              ? "Bạn có thể bấm “Ôn lại câu sai” để luyện riêng các từ hay nhầm."
+              : "Không còn câu sai nào cho chế độ này. Quá đỉnh!";
+          indexText.textContent =
+            mode === "review"
+              ? "Chế độ: Ôn lại câu sai"
+              : `Chế độ: Toàn bộ · Phiên ${sessionSize} câu`;
+
+          optionsContainer.innerHTML = "";
+          progressPill.textContent = "Xong ✔";
+          summaryText.textContent =
+            "Tổng kết phiên này: đúng " +
+            score +
+            "/" +
+            answeredCount +
+            " câu (" +
+            percentText.textContent +
+            "%).";
+          feedbackBox.style.display = "block";
+          return;
+        }
+
+        const vocabIndex = currentOrder[currentIndex];
+        const vocab = vocabList[vocabIndex];
+        const num = currentIndex + 1;
+
+        const { prompt, subtitle, label, options } =
+          getPromptAndOptions(vocabIndex);
+
+        wordText.textContent = prompt;
+        kanaText.textContent = subtitle;
+        promptLabel.textContent = label;
+        indexText.textContent =
+          (mode === "review"
+            ? "Chế độ: Ôn lại câu sai · "
+            : "Chế độ: Toàn bộ · ") + `Câu ${num} / ${currentOrder.length}`;
+        progressPill.textContent = `Câu ${num} / ${currentOrder.length}`;
+
+        optionsContainer.innerHTML = "";
+        options.forEach((opt, idx) => {
+          const btn = document.createElement("button");
+          btn.className = "option-btn";
+          btn.innerHTML = `
+          <span class="option-index">${String.fromCharCode(65 + idx)}</span>
+          <span class="option-main">${opt.main}</span>
+          ${
+            opt.sub
+              ? `<span class="option-sub">(${opt.sub})</span>`
+              : '<span class="option-sub"></span>'
+          }
+        `;
+          btn.addEventListener("click", () =>
+            handleAnswer(opt.index, vocabIndex)
+          );
+          btn.dataset.answerIndex = idx;
+          optionsContainer.appendChild(btn);
+        });
+      }
+
+      function handleAnswer(chosenIndex, correctIndex) {
+        if (questionLocked) return;
+        questionLocked = true;
+        answeredCount++;
+
+        const buttons = optionsContainer.querySelectorAll("button");
+        buttons.forEach((btn) => (btn.disabled = true));
+
+        const correctItem = vocabList[correctIndex];
+        const chosenItem = vocabList[chosenIndex];
+
+        // Cập nhật stats tổng
+        perVocabStats[correctIndex].attempts++;
+        let isCorrect = chosenIndex === correctIndex;
+        if (!isCorrect) {
+          perVocabStats[correctIndex].wrongs++;
+        }
+        saveStats();
+        refreshStatsUI();
+
+        // Cập nhật wrongSets & điểm
+        if (isCorrect) {
+          score++;
+          if (mode === "review") {
+            wrongSets[direction].delete(correctIndex);
+          }
+        } else {
+          wrongSets[direction].add(correctIndex);
+        }
+        saveWrongSets();
+        updateReviewButtonState();
+        updateScoreUI();
+
+        // tô màu đáp án
+        buttons.forEach((btn) => {
+          const mainText = btn.querySelector(".option-main").textContent;
+          const subText = btn
+            .querySelector(".option-sub")
+            .textContent.replace(/[()]/g, "");
+          const matchCorrect =
+            mainText === correctItem.kanji || mainText === correctItem.meaning;
+          const matchChosen =
+            mainText === chosenItem.kanji || mainText === chosenItem.meaning;
+
+          if (matchCorrect) {
+            btn.classList.add("correct");
+          } else if (matchChosen && !isCorrect) {
+            btn.classList.add("wrong");
+          }
+        });
+
+        feedbackBox.style.display = "block";
+        if (isCorrect) {
+          feedbackText.textContent = "Đúng rồi! ✨";
+          feedbackText.className = "feedback-text correct";
+        } else {
+          const rightText =
+            direction === "vi-jp"
+              ? `${correctItem.kanji}（${correctItem.kana}）`
+              : `${correctItem.meaning}`;
+          feedbackText.textContent = `Sai rồi. Đáp án đúng: 「${rightText}」`;
+          feedbackText.className = "feedback-text wrong";
+        }
+        exampleJp.textContent = `例文：${correctItem.jp}`;
+        exampleVi.textContent = `Dịch：${correctItem.vi}`;
+
+        const remainingWrong = wrongSets[direction].size;
+        if (remainingWrong > 0) {
+          summaryText.textContent =
+            "Hiện còn " +
+            remainingWrong +
+            " từ đang nằm trong danh sách “câu sai” ở chế độ " +
+            (direction === "vi-jp" ? "VI → JP" : "JP → VI") +
+            ".";
+        } else {
+          summaryText.textContent =
+            "Không còn từ nào trong danh sách câu sai của chế độ này. Tuyệt vời!";
+        }
+
+        nextBtn.disabled = false;
+      }
+
+      // ====== EVENT LISTENERS ======
+      nextBtn.addEventListener("click", () => {
+        if (currentIndex < currentOrder.length) {
+          currentIndex++;
+          loadQuestion();
+        }
+      });
+
+      restartBtn.addEventListener("click", () => {
+        // làm lại phiên hiện tại (giữ direction & sessionSize)
+        initQuiz(false);
+      });
+
+      reviewBtn.addEventListener("click", () => {
+        const arr = Array.from(wrongSets[direction]);
+        if (arr.length === 0) return;
+        mode = "review";
+        modePill.textContent = "Chế độ: Ôn lại câu sai";
+        updateSessionPill();
+        currentOrder = shuffle(arr);
+        currentIndex = 0;
+        score = 0;
+        answeredCount = 0;
+        updateScoreUI();
+        loadQuestion();
+      });
+
+      btnViJp.addEventListener("click", () => setDirection("vi-jp"));
+      btnJpVi.addEventListener("click", () => setDirection("jp-vi"));
+
+      btnSize10.addEventListener("click", () => setSessionSize(10));
+      btnSize20.addEventListener("click", () => setSessionSize(20));
+      btnSize50.addEventListener("click", () => setSessionSize(50));
+
+      // Bắt phím A/B/C/D + Enter
+      document.addEventListener("keydown", (e) => {
+        const key = e.key.toLowerCase();
+        const buttons = optionsContainer.querySelectorAll("button");
+        if (!buttons.length) return;
+
+        if (["a", "b", "c", "d"].includes(key)) {
+          const idx = key.charCodeAt(0) - 97; // 'a' -> 0
+          if (buttons[idx] && !buttons[idx].disabled) {
+            buttons[idx].click();
+          }
+        } else if (key === "enter") {
+          if (!nextBtn.disabled) {
+            nextBtn.click();
+          }
+        }
+      });
+
+      // ====== START ======
+      loadWrongSets();
+      loadStats();
+      refreshStatsUI();
+      updateReviewButtonState();
+      updateSessionPill();
+      updateScoreUI();
+      initQuiz(false);
+    </script>
+  </body>
+</html>

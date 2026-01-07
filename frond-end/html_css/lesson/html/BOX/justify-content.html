@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display-flex</title>
+  </head>
+  <body>
+    <style>
+      .container {
+        width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        /* flex-direction: row;Hiển thị các box theo hàng */
+        /* flex-direction: row-reverse; Hiển thị theo thứ tự ngược lại của Khối */
+        /* flex-direction: column;Hiển thị các box theo cột */
+        flex-direction: row; /*Hiển thị các box theo hàng*/
+        background-color: gray;
+        flex-wrap: wrap;
+        /* justify-content: center; hiển thị các phần tử căn giữa 
+        justify-content: flex-start; hiển thị các phần tử nằm phía bên trái
+        justify-content: flex-end;hiển thị các phần tử nằm phía bên phải 
+        justify-content: space-between;*/
+        /* flex-wrap: wrap-reverse; */
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #689597;
+        margin: 20px;
+        text-align: center;
+      }
+    </style>
+    <div class="container">
+      <div class="box">Box1</div>
+      <div class="box">Box2</div>
+      <div class="box">Box3</div>
+      <div class="box">Box4</div>
+      <div class="box">Box5</div>
+      <div class="box">Box6</div>
+      <div class="box">Box7</div>
+      <div class="box">Box8</div>
+      <div class="box">Box9</div>
+      <div class="box">Box10</div>
+      <div class="box">Box11</div>
+      <div class="box">Box12</div>
+      <div class="box">Box13</div>
+      <div class="box">Box14</div>
+      <div class="box">Box15</div>
+      <!-- <div class="box">Box13</div> -->
+    </div>
+  </body>
+</html>
