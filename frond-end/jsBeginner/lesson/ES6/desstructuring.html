@@ -14,13 +14,15 @@
       //   console.log(`b = ${b}`);
       //   console.log(`c = ${c}`);
       // Nhận giá trị từ array,object
-      let my_obj = {
-        fullname: "nguyễn Văn Tiến",
-        email: "nguyenvantienthuanan12b3@gmail.com",
-      };
-      let { fullname, email } = my_obj;
-      console.log(fullname);
-      console.log(email);
+      // let my_obj = {
+      //   fullname: "nguyễn Văn Tiến",
+      //   email: "nguyenvantienthuanan12b3@gmail.com",
+      //   age: 23,
+      // };
+      // let { fullname, email, age } = my_obj;
+      // console.log(fullname);
+      // console.log(email);
+      // console.log(age);
       //   Default value
       //   let my_array = [3, 22, 12];
       //   let [a, b, c, d] = my_array;
@@ -34,10 +36,76 @@
       //   let [a, , , d] = my_array;
       //   console.log(d);
       // HOÁN ĐỔI GIÁ TRỊ
-      let a = 10,
-        b = 15;
-      [a, b] = [b, a];
-      console.log(b);
+      // let a = 10,
+      //   b = 15;
+      // [a, b] = [b, a];
+      // console.log(b);
+      // 6. Nhận giá trị từ function
+      // let my_function = (a, b) => {
+      //   return { a, b };
+      // };
+      // let { a, b } = my_function(1, 2);
+      // console.log(`${a} : ${b}`);
+
+      // function showInfor({ name, age }) {
+      //   console.log(name, age);
+      // }
+      // showInfor("Nguyễn Văn Tiến", 23);
+
+      // Bài tập 1
+      // let number = [10, 20, 30];
+      // let [a, b] = number;
+      // console.log(`${a} : ${b}`);
+      // Bài tập 2
+      // let user = {
+      //   username: "tien",
+      //   email: "tien@gmail.com",
+      // };
+      // let { username: u, email: e } = user;
+      // console.log(`${u} :  ${e}`);
+
+      //=======DESTURING + FUNCTION ======//
+      // function showUser({ name, age }) {
+      //   console.log(`${name} : ${age}`);
+      // }
+      // let user = { name: "Tiến", age: 23 };
+      // showUser(user);
+      //Đổi tên biến trong function
+      // function showUser({ name: fullname, age }) {
+      //   console.log(fullname); //name trong object -> gán vào biến fullname
+      //   console.log(age);
+      // }
+      //Giá trị mặc định
+      /*function showUser({ name = "", age = 0 }) {
+              console.log(name, age);
+            }
+            let user = { name: "", age: 23 };
+            showUser(user); //ko bị lỗi ở name
+            //Dùng với arrow function
+            let showUser = ({ name, age }) => {
+              console.log(name, age);
+            };
+            */
+
+      /* Destructuring + return object */
+
+      const createUser = ({ name, age }) => {
+        return `Tên: ${name}, Tuổi: ${age}`;
+      };
+      console.log(createUser({ name: "Tiến", age: 23 }));
+      // Destructuring với mảng trong function
+      function sum([a, b]) {
+        return a + b;
+      }
+
+      console.log(sum([10, 20])); // 30
+
+      // Bài tập luyện thêm
+      let product = { name: "Laptop", price: 20000 };
+      function showProduct({ name, price }) {
+        console.log(`${name} - ${price}`);
+      }
+      showProduct(product);
     </script>
   </body>
 </html>

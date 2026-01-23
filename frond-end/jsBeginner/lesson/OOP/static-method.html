@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phương thức static in Javascript</title>
+  </head>
+  <body>
+    <h1>Static in class</h1>
+    <script>
+      /*
+      class Person {
+        constructor(name) {
+          this.name = name;
+        }
+        static sayHi(x) {
+          console.log(`Xin chào ${x.name}`);
+        }
+      }
+      let my_info = new Person("Tien");
+      console.log(Person.sayHi(my_info));
+      class Student {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        static sayHello() {
+          console.log(`Hello from student class`);
+        }
+      }
+      class Math {
+        static pi = 3.14;
+        static areaCircle(r) {
+          return this.pi * r * r;
+        }
+      }
+      class User {
+        static isValidEmail(email) {
+          return email.includes("@");
+        }
+      }
+      //Thuộc tính tĩnh
+      class Config {
+        static appName = "My App";
+        static version = "1.0.0";
+      }
+      console.log(Config.appName);
+      console.log(User.isValidEmail("test@gmail.com"));
+      console.log(Math.areaCircle(5));
+      Student.sayHello();*/
+      class Car {
+        start() {
+          console.log("Xe nổ máy");
+        }
+
+        static honk() {
+          console.log("Bíp bíp");
+        }
+      }
+
+      const car = new Car();
+
+      car.start(); // OK
+      Car.honk(); // OK
+
+      car.honk(); // err
+      Car.start(); // err
+    </script>
+  </body>
+</html>

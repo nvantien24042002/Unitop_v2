@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kế thừa trong Javascript</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <input type="text" name="" id="nameInput" placeholder="Nhập tên mới" />
+    <button onclick="updateName()">Cập nhật</button>
+    <script>
+      class User {
+        constructor(fullname) {
+          this.fullname = fullname;
+        }
+        show() {
+          return `Xin chào : ${this.fullname}`;
+        }
+        render() {
+          document.getElementById("root").innerHTML = this.show();
+        }
+      }
+      class Student extends User {
+        constructor(fullname, uni, std_year) {
+          super(fullname);
+          this.uni = uni;
+          this.std_year = std_year;
+        }
+        introduce() {
+          return `Xin chào, tôi là ${this.fullname} sinh viên năm thứ ${this.std_year}, hiện đang 
+          học tại trường ${this.uni}`;
+        }
+      }
+      let s1 = new Student("Nguyễn Văn Tiên", "Hue University of Sicence", 4);
+      console.log(s1);
+      // Hàm xử lý sự kiện khi nhấn nút
+      function updateName() {
+        const input = document.getElementById("nameInput");
+        //Kiểm tra xem user có nhập gì ko (loại bỏ khoảng trắng)
+        if (input.value.trim() !== "") {
+          s1.fullname = input.value;
+          s1.render();
+          //Xoá bỏ khoảng trắng
+          input.value = "";
+        }
+      }
+    </script>
+  </body>
+</html>

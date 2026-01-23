@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class trong js</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="list"></div>
+    <script>
+      //Bài tập 1
+      /*
+      class Student {
+        constructor(name, age, score) {
+          this.name = name;
+          this.age = age;
+          this.score = score;
+        }
+
+        getInfor() {
+          return `${this.name}, Tuổi ${this.age}`;
+        }
+        getAge() {
+          return this.age;
+        }
+
+        isAdult() {
+          return this.age >= 18;
+        }
+        sayHello() {
+          return `Xin chào tôi tên là ${this.name}`;
+        }
+        getScore() {
+          return `Điểm của ${this.name} là ${this.score}`;
+        }
+        render() {
+          const root = document.getElementById("root");
+          root.innerHTML = `
+              <p>${this.sayHello()}</p>
+              <p>${this.getScore()}</p>
+              <p>${this.isAdult() ? "Đã đủ tuổi" : "Chưa đủ tuổi"}</p>
+          `;
+        }
+      }
+      const s1 = new Student("Tiến", 23, 80);
+      s1.render();
+      */
+      //  Bài tập 2 : Class + Array + Render
+      class Student {
+        constructor(name, age, score) {
+          this.name = name;
+          this.age = age;
+          this.score = score;
+        }
+        isAdult() {
+          return this.age > 18;
+        }
+        getStatus() {
+          return this.isAdult() ? "Đủ tuổi" : "Chưa đủ tuổi";
+        }
+        getColorByAge() {
+          return this.isAdult() ? "green" : "red";
+        }
+        render() {
+          return `
+              <li style = "color: ${this.getColorByAge()}">
+                Điểm: <b> ${this.name}</b>
+                Tuổi: <b> ${this.age}</b>
+                Điểm: <b> ${this.score}</b>
+                <br/>
+                Trạng thái: ${this.getStatus()}
+              </li>
+          `;
+        }
+      }
+      let students = [
+        new Student("Tiến", 23, 80),
+        new Student("An", 16, 70),
+        new Student("Bình", 20, 90),
+      ];
+      const list = document.getElementById("list");
+      //Giải thích cho tôi đoạn này
+      let html = "";
+      students.forEach((student) => {
+        html += student.render();
+      });
+      list.innerHTML = html;
+    </script>
+  </body>
+</html>

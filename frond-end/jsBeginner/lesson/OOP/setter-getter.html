@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setter and Getter in Javascript</title>
+  </head>
+  <body>
+    <script>
+      class Student {
+        constructor(fullname, uni, std_year) {
+          this.fullname = fullname;
+          this.uni = uni;
+          this.std_year = std_year;
+        }
+        // setFullname(fullname) {
+        //   this.fullname = fullname;
+        // }
+        // getFullname() {
+        //   return this.fullname;
+        // }
+
+        set setFullname(fullname) {
+          this.fullname = fullname;
+        }
+        get getFullname() {
+          return this.fullname;
+        }
+      }
+      let my_info = new Student("Nguyễn Văn Tiến", "HUSC", 4);
+      my_info.setFullname = "Tiến";
+      console.log(my_info.getFullname);
+    </script>
+  </body>
+</html>
