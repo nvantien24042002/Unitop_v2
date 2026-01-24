@@ -18,4 +18,12 @@ $quantity = 3;
 $totalCost = $unitPrice * $quantity;
 echo "<br>";
 echo $totalCost;
+
+$total_product = 5;
+$price = 200;
+$discount_price = 50;
+
+$result_price = $price * $total_product;
+
+$result_discountPrice = $result_price - $discount_price;
 ?>
